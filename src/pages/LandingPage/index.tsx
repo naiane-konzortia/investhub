@@ -5,6 +5,7 @@ import { CardsSection } from './CardsSection';
 import { Features } from './Features';
 import { HeroSection } from './HeroSection';
 import { MoreOptions } from './MoreOptions';
+import { Partners } from './Partners';
 import { VideoSection } from './VideoSection';
 
 export const LandingPage = () => {
@@ -16,6 +17,7 @@ export const LandingPage = () => {
     <VideoSection/>
     <CardsSection/>
     <MoreOptions/>
+    <Partners/>
     <Footer/>
     </>)
 }
