@@ -37,6 +37,7 @@
   font-family: "Custom-1";
   font-weight: 500 !important;
 }
+
 .font-noah-700 {
   font-family: "Custom-1";
   font-weight: 700 !important;
@@ -45,6 +46,11 @@
   font-family: "Custom-1";
   font-weight: 700 !important;
   color: #0E1C28;
+}
+.font-noah-white {
+  font-family: "Custom-1";
+  font-weight: 700 !important;
+  color: white;
 }
 
 .font-noah-black-300 {
@@ -161,6 +167,31 @@
   place-content: center;
   place-items: center;
   background-color: #f0eff3;
+}
+
+.logo-position-lp{
+  max-width: none !important;
+  width:240px !important;
+}
+
+.button-transparent-white{
+width: 124px;
+height: 44px;
+left: 164px;
+top: 0px;
+color:white;
+background: rgba(14, 28, 40, 0.35);
+border: 1px solid #F0EFF3;
+}
+
+.button-transparent-orange{
+width: 174px;
+height: 44px;
+left: 164px;
+top: 0px;
+color:white;
+background:rgba(255, 111, 79, 0.35);
+border: 1px solid #F0EFF3;
 }
 
 .start-campaign-description {
@@ -338,6 +369,67 @@ border: 4px solid #f0eff3 !important;
     background-color: #737373 !important;
     color:white !important; 
 } */
+
+.background-gif{
+  background-image:url('../assets/animation/Banner_InvestHub.gif');
+  background-size:100% !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  width:100%;
+  object-fit: cover !important;
+  resize: none !important;
+  object-fit: fill !important;
+  object-fit: contain !important;
+}
+.bg-header-lp{
+  background-color: #CDCDCD;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.card-insights{
+  width: 297px;
+height: 297px;
+background: linear-gradient(180deg, #F0EFF3 0%, #CDCDCD 100%);
+}
+.card-team{
+  width: 297px;
+height: 297px;
+background: linear-gradient(180deg, #E0FF4F 0%, #E99C4D 100%);;
+}
+.card-news{
+  width: 297px;
+height: 297px;
+background: #FF6F4F;
+}
+.card-pubs{
+  width: 297px;
+height: 297px;
+background:linear-gradient(180deg, #0E1C28 0%, #111112 100%);
+}
+
+.bg-blue{
+background: #0E1C28;
+}
+.bg-orange{
+  background: #E99C4D;
+}
+
+.btn-orange-border{
+  min-width: 200px;
+min-height: 34px;
+  background: rgba(240, 239, 243, 0.2);
+border: 1px solid #E99C4D;
+}
+
+.btn-orange{
+  width: 150px;
+height: 56px;
+left: 229px;
+top: 0px;
+background: rgba(240, 239, 243, 0.25);
+border: 1px solid #F0EFF3;
+}
 
 .font-label {
   font-family: "Vision Regular";

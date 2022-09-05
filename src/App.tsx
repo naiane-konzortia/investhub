@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useRedux } from "./hooks";
 import './css/tailwind.css';
 import { StartCampaign } from "./components/StartCampaign";
+import { LandingPage } from "./pages/LandingPage";
 
 
 const App = () => {
@@ -12,7 +13,8 @@ const App = () => {
     <div className="bg-white h-screen w-screen overflow-x-hidden">
       <Router>
         <Routes>
-          <Route path="/" element={<StartCampaign />}></Route>
+          <Route path="/createcampaign" element={<StartCampaign />}></Route>
+          <Route path="/" element={<LandingPage />}></Route>
         </Routes>
       </Router>
       </div>
