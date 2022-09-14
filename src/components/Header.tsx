@@ -158,10 +158,11 @@ export default function NavBar() {
                           {navbar && 
                           <>
                           <li className="font-label-btn-700 font-size-14 mr-3 hover:text-orange-600">
-                          <a href="">Sign in</a>
+                          <a onClick={() => dispatch(setActiveState("sign_in"))}>Sign in</a>
                       </li>
                       <li className="font-label-btn-700 font-size-14 hover:text-orange-600">
-                          <a href="">Sign up</a>
+                          <a onClick={() => dispatch(setActiveState("sign_up"))}
+                          >Sign up</a>
                       </li>
                       </>
                           }

@@ -21,7 +21,8 @@ export const Welcome = () => {
                 alt="user-profile"
                 className="logo-position-welcome"
               />
-      <span className='mt-16 font-noah-magnolia-300 m-16'>Start to raise / invest / share your knowledge and MORE in the best global HUB!</span>
+      <span className='mt-16 font-noah-magnolia-300 m-16'>
+        Start to raise / invest / share your knowledge and MORE in the best global HUB!</span>
       </div>
       :
       <div className=' h-full w-full center-div p-20'>

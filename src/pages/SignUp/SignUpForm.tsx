@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { BsLinkedin } from "react-icons/bs";
 import { AiFillApple } from "react-icons/ai";
@@ -9,11 +9,14 @@ import { Form, Input } from "reactstrap";
 import FormInput from "../../components/FormInput";
 import { useRedux } from "../../hooks";
 import { setActiveSignUpTimeline, setSignUpData } from "../../redux/actions";
-
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 export const SignUpForm = () => {
   const { dispatch, useAppSelector } = useRedux();
-
+  const { investorType } = useAppSelector((state) => ({
+    investorType:state.Pages.investorType,
+}))
   const resolver = yupResolver(
     yup.object().shape({
       name: yup.string().required("Please Enter Full Name."),
@@ -45,16 +48,22 @@ export const SignUpForm = () => {
     dispatch(setActiveSignUpTimeline('more_info'))
 
   }
+  const [phone, setPhone] = useState();
 
   return (
     <>
+     <div className="container mx-auto mb-6">
+        <h4 className=" font-bold text-center font-noah-700 text-gray-800 ">
+          {investorType === 'raise' ? `We will not charge you anything until you are able to successfully raise capital.`: `We will not charge you anything, this is a free service for investors right now.`}
+        </h4>
+        </div>
       <div className="w-full">
       <div className="flex items-center w-full ">
         <hr className="w-full" />
         <div className="font-size-14 w-full font-label">SIGN UP WITH</div>
         <hr className="w-full" />
       </div>
-        <div className="flex flex-row mb-12">
+        <div className="flex flex-col lg:flex-row md:flex-row mb-12">
           <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
@@ -66,10 +75,10 @@ export const SignUpForm = () => {
           </button>
           <button
             type="button"
-            className="focus:outline-none inline-block font-label-gray-700  mr-2 px-10 py-2 bg-gray flex items-center w-full mt-10"
+            className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
           >
             <BsLinkedin />
-            <p className="text-base mt-1 w-full font-size-12 font-label-gray-700 ml-2 break-normal text-gray-700">
+            <p className="font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
             LinkedIn
             </p>
           </button>
@@ -114,6 +123,17 @@ export const SignUpForm = () => {
                   hidePasswordButton={true}
                 />
               </div>
+              <div className="mb-3">
+              <PhoneInput
+                      type="tel"
+                      placeholder="Phone number"
+                      // maxLength="18"
+                      value={phone !== null ? phone : ""}
+                      defaultCountry="US"
+                      onChange={(e: any) => {setPhone(e)}}
+                      // onBlur={(e) => {setNewPhone(e); changePhoneNumber()}}
+                    />
+                    </div>
               <div className="mb-3">
                 <FormInput
                   type="password"

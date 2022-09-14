@@ -49,40 +49,42 @@ export const SignIn = () => {
           </div>
         <div className="md:items-center each-wrap  w-6/12 center-div mx-auto px-6 p-10">
        
-        <div className="flex items-center w-full ">
-          <hr className="w-full" />
-          <div className="font-size-14 w-full font-label">SIGN IN WITH</div>
-          <hr className="w-full" />
+        <div className="w-full">
+      <div className="flex items-center w-full ">
+        <hr className="w-full" />
+        <div className="font-size-14 w-full font-label">SIGN UP WITH</div>
+        <hr className="w-full" />
+      </div>
+        <div className="flex flex-col lg:flex-row md:flex-row mb-12">
+          <button
+            type="button"
+            className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
+          >
+            <AiOutlineGoogle />
+            <p className=" font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
+            Google
+            </p>
+          </button>
+          <button
+            type="button"
+            className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
+          >
+            <BsLinkedin />
+            <p className="font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
+            LinkedIn
+            </p>
+          </button>
+          <button
+            type="button"
+            className="focus:outline-none inline-block font-label-gray-700 py-2  px-10 bg-gray flex items-center w-full mt-10"
+          >
+            <AiFillApple />
+            <p className="text-base mt-1 font-size-12 font-label-gray-700 ml-2 mr-2 break-normal text-gray-700">
+            AppleID
+            </p>
+          </button>
         </div>
-          <div className="flex flex-row mb-12">
-            <button
-              type="button"
-              className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
-            >
-              <AiOutlineGoogle />
-              <p className=" font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
-              Google
-              </p>
-            </button>
-            <button
-              type="button"
-              className="focus:outline-none inline-block font-label-gray-700  mr-2 px-10 py-2 bg-gray flex items-center w-full mt-10"
-            >
-              <BsLinkedin />
-              <p className="text-base mt-1 w-full font-size-12 font-label-gray-700 ml-2 break-normal text-gray-700">
-              LinkedIn
-              </p>
-            </button>
-            <button
-              type="button"
-              className="focus:outline-none inline-block font-label-gray-700 py-2  px-10 bg-gray flex items-center w-full mt-10"
-            >
-              <AiFillApple />
-              <p className="text-base mt-1 font-size-12 font-label-gray-700 ml-2 mr-2 break-normal text-gray-700">
-              AppleID
-              </p>
-            </button>
-          </div>
+      </div>
         <div className="flex items-center w-full ">
           <hr className="w-full" />
           <div className="font-size-14 mr-5 ml-5 font-label">OR</div>
