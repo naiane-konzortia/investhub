@@ -86,6 +86,10 @@ export const MoreInfo = () => {
         label:"Broker Dealer / Advisor / Wealth Manager",
         value:"brokerAdvisorWealth"
       },
+        {
+        label:"Other",
+        value:"Other"
+      },
 
     ]
       const descriptionOptionsInvest = [
@@ -121,7 +125,10 @@ export const MoreInfo = () => {
         label:"Broker Dealer / Advisor / Wealth Manager",
         value:"brokerAdvisorWealth"
       },
-
+      {
+        label:"Other",
+        value:"Other"
+      },
     ]
     
       const raiseOptions = [
