@@ -7,7 +7,6 @@ export enum AuthRegisterActionTypes {
 }
 
 
-
 export interface AuthRegisterState {
   registrationError: any;
   message: string;

@@ -23,7 +23,7 @@ export const MoreOptions = () => {
         </div>
         <div className="flex text-center mt-5 flex-wrap">
             <div className=" w-full md:w-1/1 px-2  ">
-              <button className='btn-orange  font-noah-black font-size-24 mr-10'>Invest</button>
+              <button className='btn-orange  font-noah-black font-size-24 m-5'>Invest</button>
               <button className='btn-orange font-noah-black font-size-24'>Raise</button>
           </div>
 

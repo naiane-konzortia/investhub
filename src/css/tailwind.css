@@ -52,6 +52,16 @@
   font-weight: 700 !important;
   color: white;
 }
+.font-noah-magnolia-700 {
+  font-family: "Custom-1";
+  font-weight: 700 !important;
+  color: #F0EFF3;
+}
+.font-noah-magnolia-300 {
+  font-family: "Custom-1";
+  font-weight: 300 !important;
+  color: #F0EFF3;
+}
 
 .font-noah-black-300 {
   font-family: "Custom-1";
@@ -144,7 +154,7 @@
 }
 
 .w-100 {
-  width: 100%;
+  width: 100% !important;
 }
 .start-campaign-page {
   background-color: #f0eff3 !important;
@@ -172,6 +182,10 @@
 .logo-position-lp{
   max-width: none !important;
   width:240px !important;
+}
+.logo-position-welcome{
+  max-width: none !important;
+  max-width:400px !important;
 }
 
 .button-transparent-white{
@@ -258,7 +272,7 @@ border: 1px solid #F0EFF3;
   align-content: left !important;
   place-items: left !important;
   max-width: none !important;
-  width:240px !important;
+  width:150px !important;
 }
 
 .left-div {
@@ -372,15 +386,11 @@ border: 4px solid #f0eff3 !important;
 
 .background-gif{
   background-image:url('../assets/animation/Banner_InvestHub.gif');
-  background-size:100% !important;
+  background-size:cover !important;
+  object-position: bottom !important;
   background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-  width:100%;
-  object-fit: cover !important;
-  resize: none !important;
-  object-fit: fill !important;
-  object-fit: contain !important;
 }
+
 .bg-header-lp{
   background-color: #CDCDCD;
   align-items: center !important;
@@ -410,9 +420,51 @@ background:linear-gradient(180deg, #0E1C28 0%, #111112 100%);
 
 .bg-blue{
 background: #0E1C28;
+height:100vh !important;
 }
 .bg-orange{
   background: #E99C4D;
+}
+.bg-gray{
+  background:  #CDCDCD;
+}
+
+
+.black-circle{
+  width: 35px;
+height: 35px;
+border-radius: 100%;
+background: #0E1C28;
+box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.gray-circle{
+  width: 35px;
+height: 35px;
+border-radius: 100%;
+background: #F0EFF3;
+box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.black-line{
+  width: 100px;
+  height: 7px;
+  background: #0E1C28;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.space-line{
+  width: 150px;
+  height: 7px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.gray-line{
+  width: 100px;
+  height: 5px;
+  background: #F0EFF3;
+  text-align: center;
+  place-content: center;
+  place-items: center;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .btn-orange-border{
@@ -439,6 +491,12 @@ border: 1px solid #F0EFF3;
 .font-size-12 {
   font-size: 12px !important;
 }
+.font-size-11 {
+  font-size: 11px !important;
+}
+.font-size-10 {
+  font-size: 10px !important;
+}
 .font-size-16{
   font-size: 16px !important;
 
@@ -450,6 +508,10 @@ border: 1px solid #F0EFF3;
 
 .font-size-14 {
   font-size: 14px !important;
+}
+
+.font-size-9 {
+  font-size: 9px !important;
 }
 
 .font-label-italic {
@@ -470,6 +532,12 @@ border: 1px solid #F0EFF3;
   font-weight: 300;
   size: 20px;
 }
+.font-label-red-300 {
+  font-family: "Vision Regular";
+  color: red;
+  font-weight: 300;
+  size: 20px;
+}
 
 .font-label-black {
   font-family: "Vision Regular";
@@ -486,6 +554,26 @@ border: 1px solid #F0EFF3;
   font-family: "Vision Regular";
   color: #0e1c28;
   font-weight: 700;
+  size: 20px;
+}
+.font-label-gray-700 {
+  font-family: "Vision Regular";
+  color: #737373;
+  font-weight: 700;
+  size: 20px;
+}
+
+.yellow-line{
+  width: 90px;
+  background-color:#E0FF4F;
+  border: 2px solid #E0FF4F;
+}
+
+
+.font-label-gray-300 {
+  font-family: "Vision Regular";
+  color: #737373;
+  font-weight: 300;
   size: 20px;
 }
 
@@ -659,6 +747,11 @@ border: 1px solid #F0EFF3;
 }
 .form-one-line:focus {
   border-bottom: 0.1rem solid #ff6f4f !important;
+}
+
+.bg-welcome{
+  width:50% !important;
+  height: 70% !important
 }
 
 .orange-circle {

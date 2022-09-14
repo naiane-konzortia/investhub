@@ -114,8 +114,7 @@ export const FormTimeline = () => {
                       errors={errors}
                       control={control}
                       className="form-one-line font-timeline-form font-label"
-                      withoutLabel={true}
-                      hidePasswordButton={true}
+
                     />
                   </div>
 
@@ -146,8 +145,7 @@ export const FormTimeline = () => {
                       errors={errors}
                       control={control}
                       className="form-one-line font-timeline-form"
-                      withoutLabel={true}
-                      hidePasswordButton={true}
+
                     />
                   </div>
        <div className="mb-3 each-wrap w-10/12 pl-2">
@@ -158,8 +156,7 @@ export const FormTimeline = () => {
                       errors={errors}
                       control={control}
                       className="form-one-line font-timeline-form"
-                      withoutLabel={true}
-                      hidePasswordButton={true}
+
                     />
                   </div>
     
@@ -171,8 +168,7 @@ export const FormTimeline = () => {
                       errors={errors}
                       control={control}
                       className="form-one-line font-timeline-form"
-                      withoutLabel={true}
-                      hidePasswordButton={true}
+
                     />
                   </div>
                   </div>
@@ -190,8 +186,7 @@ export const FormTimeline = () => {
                       errors={errors}
                       control={control}
                       className="form-one-line font-timeline-form font-label"
-                      withoutLabel={true}
-                      hidePasswordButton={true}
+
                     />
                   </div>
 

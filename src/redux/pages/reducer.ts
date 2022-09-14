@@ -4,7 +4,12 @@ export const INIT_STATE: PagesState = {
   isActivePageSet: false,
   activePage:"company_details",
   activeTimelineStep: 1,
-  activeSubStep: false
+  activeSubStep: false,
+  activeState:"sign_up",
+  activeSignUpTimeline: "create_user",
+  investorType: "invest",
+  signUpData: null,
+  nameUser:null
 };
 
 const Pages = (state = INIT_STATE, action: any) => {
@@ -24,10 +29,35 @@ const Pages = (state = INIT_STATE, action: any) => {
       };
     }
     case PagesActionTypes.SET_ACTIVE_SUBSTEP: {
-      console.log(action.payload)
       return {
         ...state,
         activeSubStep:action.payload.activeSubStep
+      };
+    }
+    case PagesActionTypes.SET_ACTIVE_STATE: {
+      return {
+        ...state,
+        activeState:action.payload.activeState
+      };
+    }
+    case PagesActionTypes.SET_ACTIVE_SIGNUP_TIMELINE_STEP: {
+      return {
+        ...state,
+        activeSignUpTimeline:action.payload.activeSignUpTimeline
+      };
+    }
+    case PagesActionTypes.SET_INVESTOR_TYPE: {
+      return {
+        ...state,
+        investorType:action.payload.investorType
+      };
+    }
+    case PagesActionTypes.SIGN_UP_DATA: {
+      console.log(action.payload)
+      return {
+        ...state,
+        investorType:action.payload.signUpData,
+        nameUser: action.payload.signUpData.name
       };
     }
     default:

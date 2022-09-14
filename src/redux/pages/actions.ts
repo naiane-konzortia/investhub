@@ -24,3 +24,31 @@ export const setActiveSubstep = (activeSubStep: boolean) => {
   };
 };
 
+export const setActiveState = (activeState: "landing_page" | "sign_up") => {
+  return {
+    type: PagesActionTypes.SET_ACTIVE_STATE,
+    payload: { activeState },
+  };
+};
+
+export const setActiveSignUpTimeline = (activeSignUpTimeline: "create_user" | "more_info" | "raise_info" | "finish_page") => {
+  return {
+    type: PagesActionTypes.SET_ACTIVE_SIGNUP_TIMELINE_STEP,
+    payload: { activeSignUpTimeline },
+  };
+};
+
+export const setInvestorType = (investorType: "invest" | "raise" ) => {
+  return {
+    type: PagesActionTypes.SET_INVESTOR_TYPE,
+    payload: { investorType },
+  };
+};
+
+export const setSignUpData = (signUpData:{} ) => {
+  return {
+    type: PagesActionTypes.SIGN_UP_DATA,
+    payload: { signUpData },
+  };
+};
+

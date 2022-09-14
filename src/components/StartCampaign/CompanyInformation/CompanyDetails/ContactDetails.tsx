@@ -78,8 +78,7 @@ export const ContactDetails = () => {
                       errors={errors}
                       control={control}
                       className="form-one-line font-timeline-form font-label"
-                      withoutLabel={true}
-                      hidePasswordButton={true}
+
                     />
                   </div>
 
@@ -96,8 +95,7 @@ export const ContactDetails = () => {
                       errors={errors}
                       control={control}
                       className="form-one-line font-timeline-form font-label"
-                      withoutLabel={true}
-                      hidePasswordButton={true}
+
                     />
                   </div>
 

@@ -77,8 +77,7 @@ export const CompanyWebsite = () => {
                 errors={errors}
                 control={control}
                 className="form-one-line font-timeline-form font-label"
-                withoutLabel={true}
-                hidePasswordButton={true}
+
               />
             </div>
           </div>
@@ -106,8 +105,7 @@ export const CompanyWebsite = () => {
                 errors={errors}
                 control={control}
                 className="form-one-line font-timeline-form font-label"
-                withoutLabel={true}
-                hidePasswordButton={true}
+
               />
             </div>
           </div>
@@ -129,8 +127,7 @@ export const CompanyWebsite = () => {
                 errors={errors}
                 control={control}
                 className="form-one-line font-timeline-form font-label"
-                withoutLabel={true}
-                hidePasswordButton={true}
+
               />
             </div>
             <div className="each-wrap w-3/12 flex flex-row pl-5">
@@ -142,8 +139,7 @@ export const CompanyWebsite = () => {
                 errors={errors}
                 control={control}
                 className="form-one-line font-timeline-form font-label"
-                withoutLabel={true}
-                hidePasswordButton={true}
+
               />
             </div>
             <div className="each-wrap w-3/12 flex flex-row pl-5">
@@ -155,8 +151,7 @@ export const CompanyWebsite = () => {
                 errors={errors}
                 control={control}
                 className="form-one-line font-timeline-form font-label"
-                withoutLabel={true}
-                hidePasswordButton={true}
+
               />
             </div>
           </div>
@@ -170,8 +165,7 @@ export const CompanyWebsite = () => {
                 errors={errors}
                 control={control}
                 className="form-one-line font-timeline-form font-label"
-                withoutLabel={true}
-                hidePasswordButton={true}
+
               />
             </div>
             <div className="each-wrap w-3/12 flex flex-row pl-5">
@@ -183,8 +177,7 @@ export const CompanyWebsite = () => {
                 placeholder="Yelp"
                 control={control}
                 className="form-one-line font-timeline-form font-label"
-                withoutLabel={true}
-                hidePasswordButton={true}
+ 
               />
             </div>
             <div className="each-wrap w-3/12 flex flex-row pl-5">
@@ -196,8 +189,7 @@ export const CompanyWebsite = () => {
                 errors={errors}
                 control={control}
                 className="form-one-line font-timeline-form font-label"
-                withoutLabel={true}
-                hidePasswordButton={true}
+
               />
             </div>
           </div>

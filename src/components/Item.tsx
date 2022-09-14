@@ -11,7 +11,7 @@ const Item = ({ links, title }:ItemProps ) => {
         <li key={link.name}>
           <a
             className="hover:text-orange-400 duration-300
-          text-sm cursor-pointer leading-6 mr-10 font-size-14 font-noah-black-300"
+          text-sm cursor-pointer leading-6 mr-16 font-size-14 font-noah-black-300"
             href={link.link}
           >
             {link.name}

@@ -82,8 +82,6 @@ export const Form = ({label, onSubmit, nextStep, previousStep, sublabel, buttons
                       errors={errors}
                       control={control}
                       className="form-one-line font-timeline-form font-label"
-                      withoutLabel={true}
-                      hidePasswordButton={true}
                     />
                   </div>
                   <span className='font-label font-size-12 ml-5'>{sublabel}</span>

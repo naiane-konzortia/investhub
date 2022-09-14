@@ -96,8 +96,6 @@ export const VotingRights = () => {
             errors={errors}
             control={control}
             className="form-one-line font-timeline-form font-label ml-1  mt-1"
-            withoutLabel={true}
-            hidePasswordButton={true}
             onClick={() => {
                 setMore(!more);
                 dispatch(setActiveSubstep(!activeSubStep))
@@ -116,8 +114,6 @@ export const VotingRights = () => {
             errors={errors}
             control={control}
             className="form-one-line font-timeline-form font-label ml-1 mt-1 center-div"
-            withoutLabel={true}
-            hidePasswordButton={true}
             onClick={() => {
                 dispatch(setActiveSubstep(false))
             }}
@@ -142,8 +138,7 @@ export const VotingRights = () => {
                               errors={errors}
                               control={control}
                               className="form-one-line font-timeline-form font-label"
-                              withoutLabel={true}
-                              hidePasswordButton={true}
+
                             />
                           </div>
             </div>

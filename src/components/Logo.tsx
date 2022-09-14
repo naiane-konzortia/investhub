@@ -12,7 +12,7 @@ const Logo = ( ) => {
               className=" mr-1 logo-footer"
             />       
     </div>
-        <span className="font-label-black-light font-size-24">©2021 All rights reserved</span>
+        <span className="font-label-black-light font-size-16">©2021 All rights reserved</span>
 </>
   );
 };

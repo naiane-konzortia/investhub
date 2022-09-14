@@ -75,8 +75,7 @@ export const CompanyNameForm = () => {
                       errors={errors}
                       control={control}
                       className="form-one-line font-timeline-form font-label"
-                      withoutLabel={true}
-                      hidePasswordButton={true}
+
                     />
                   </div>
 

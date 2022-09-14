@@ -88,8 +88,7 @@ export const SecurityName = () => {
             errors={errors}
             control={control}
             className="form-one-line font-label ml-1  mt-1"
-            withoutLabel={true}
-            hidePasswordButton={true}
+
           />
           <span className=" ml-2 font-label-black sm:w-12/12 font-size-14 mb-2 ml-1 center-div">
             {" "}
@@ -104,8 +103,7 @@ export const SecurityName = () => {
             errors={errors}
             control={control}
             className="form-one-line font-timeline-form font-label ml-1  mt-1"
-            withoutLabel={true}
-            hidePasswordButton={true}
+
           />
           <span className=" ml-2 font-label-black sm:w-12/12 font-size-14 mb-2 ml-1 center-div">
             {" "}
@@ -120,8 +118,7 @@ export const SecurityName = () => {
             errors={errors}
             control={control}
             className="form-one-line font-timeline-form font-label ml-1  mt-1"
-            withoutLabel={true}
-            hidePasswordButton={true}
+
           />
           <span className=" ml-2 font-label-black sm:w-12/12 ml-1 center-div font-size-14 mb-2">
             {" "}
@@ -136,8 +133,7 @@ export const SecurityName = () => {
             errors={errors}
             control={control}
             className="form-one-line font-timeline-form font-label ml-1  mt-1"
-            withoutLabel={true}
-            hidePasswordButton={true}
+
           />
           <span className=" ml-2 font-label-black sm:w-12/12 ml-1 center-div font-size-14 mb-2">
             {" "}
@@ -152,8 +148,6 @@ export const SecurityName = () => {
             errors={errors}
             control={control}
             className="form-one-line font-timeline-form font-label ml-1  mt-1"
-            withoutLabel={true}
-            hidePasswordButton={true}
           />
           <span className=" ml-2 font-label-black sm:w-12/12 ml-1 center-div font-size-14 mb-2">
             {" "}

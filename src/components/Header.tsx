@@ -13,10 +13,10 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import search from "../assets/images/svg/search.svg"
 import {IoIosArrowDown} from "react-icons/io"
 import investHubLogoColor from "../assets/images/svg/investHubLogoColor.svg"
+import { useRedux } from "../hooks";
+import { setActiveState } from "../redux/actions";
 
 export const Header = () => {
-  
-  const [navbar, setNavbar] = useState(false);
 
 
   const methods = useForm();
@@ -57,8 +57,6 @@ export const Header = () => {
                       style={{fontFamily:"Arial"}}
                       placeholder="Search"
                       className="form-control-header font-label center-div font-size-12 "
-                      withoutLabel={true}
-                      hidePasswordButton={true}
                     />
           </div>
           <div className="font-label-btn-700 ml-10 font-size-16 pointer each-wrap w-2/12 center-div">
@@ -87,14 +85,17 @@ export const Header = () => {
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
   const [logged, setLogged] = useState(false);
-
+  const { dispatch, useAppSelector } = useRedux();
+  const { activePage } = useAppSelector((state) => ({
+    activePage:state.Pages.activePage,
+}))
 
   return (
       <nav className="w-full bg-header shadow">
           <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
               <div>
                   <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                      <a href="javascript:void(0)">
+                      <a >
                       <img
               src={investHubLogoColor}
               alt="user-profile"
@@ -140,34 +141,42 @@ export default function NavBar() {
               </div>
               <div>
                   <div
-                      className={`flex-1   justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+                      className={`flex-1  text-align-left  pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
                           navbar ? "block" : "hidden"
                       }`}
                   >
-                      <ul className="items-center  place-content-center align-items-center flex justify-center space-y-8 space-x-4 md:flex md:space-x-6 md:space-y-0">
-                          <li className="font-label-btn-700 font-size-16 mr-3 hover:text-orange-600">
-                              <a href="javascript:void(0)">Home</a>
+                    <ul className="flex flex-col p-4 mt-4 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium ">
+                          <li className="font-label-btn-700 pointer font-size-14 mr-3 hover:text-orange-600">
+                              <a onClick={() => dispatch(setActiveState('landing_page'))}>Home</a>
                           </li>
-                          <li className="font-label-btn-700 mr-3 font-size-16 hover:text-orange-600">
-                              <a href="javascript:void(0)">About us</a>
+                          <li className="font-label-btn-700 pointer mr-3 font-size-14 hover:text-orange-600">
+                              <a href="">Start Investing</a>
                           </li>
-                          <li className="font-label-btn-700 mr-3 font-size-16 hover:text-orange-600">
-                              <a href="javascript:void(0)">Start Investing</a>
+                          <li className="font-label-btn-700 pointer font-size-14 mr-3 hover:text-orange-600">
+                              <a href="">Raise Capital</a>
                           </li>
-                          <li className="font-label-btn-700 font-size-16 hover:text-orange-600">
-                              <a href="javascript:void(0)">Raise Capital</a>
-                          </li>
+                          {navbar && 
+                          <>
+                          <li className="font-label-btn-700 font-size-14 mr-3 hover:text-orange-600">
+                          <a href="">Sign in</a>
+                      </li>
+                      <li className="font-label-btn-700 font-size-14 hover:text-orange-600">
+                          <a href="">Sign up</a>
+                      </li>
+                      </>
+                          }
+                          
                       </ul>
 
                       {/* <div className="mt-3 space-y-2 lg:hidden ">
                   <a
-                      href="javascript:void(0)"
+                      href=""
                       className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
                   >
           Sign in
                   </a>
                   <a
-                      href="javascript:void(0)"
+                      href=""
                       className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
                   >
                       Sign up
@@ -179,14 +188,15 @@ export default function NavBar() {
                 !logged && 
                 <div className="hidden space-x-2 md:inline-block">
                   <a
-                      href="javascript:void(0)"
+                      href=""
                       className="px-4 py-2 text-white bg-orange-primary font-noah-700 rounded-md shadow hover:bg-gray-800"
                   >
                       Sign in
                   </a>
                   <a
-                      href="javascript:void(0)"
+                      href=""
                       className="px-4 py-2 text-gray-800 font-noah-700 bg-white rounded-md shadow hover:bg-gray-100"
+                      onClick={() => dispatch(setActiveState("sign_up"))}
                   >
                       Sign up
                   </a>
@@ -229,7 +239,7 @@ export const NavBarLogged = () => {
           <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
               <div>
                   <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                      <a href="javascript:void(0)">
+                      <a href="">
                       <img
               src={investHubLogoColor}
               alt="user-profile"
@@ -284,25 +294,25 @@ export const NavBarLogged = () => {
                       <a className="font-label-btn-700 mt-1  ">START INVESTING</a>
                       </li>
                           <li className="font-label-btn-700  hover:text-orange-600">
-                              <a href="javascript:void(0)">INVESTHUBCONNECTS</a>
+                              <a href="">INVESTHUBCONNECTS</a>
                           </li>
                           <li className="font-label-btn-700 hover:text-orange-600">
-                              <a href="javascript:void(0)">RAISE CAPITAL</a>
+                              <a href="">RAISE CAPITAL</a>
                           </li>
                           <li className="font-label-btn-700  hover:text-orange-600">
-                              <a href="javascript:void(0)">EDIT MY CAMPAIGN</a>
+                              <a href="">EDIT MY CAMPAIGN</a>
                           </li>
                       </ul>
 
                       {/* <div className="mt-3 space-y-2 lg:hidden ">
                   <a
-                      href="javascript:void(0)"
+                      href=""
                       className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
                   >
           Sign in
                   </a>
                   <a
-                      href="javascript:void(0)"
+                      href=""
                       className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
                   >
                       Sign up
@@ -314,13 +324,13 @@ export const NavBarLogged = () => {
                 !logged && 
                 <div className="hidden space-x-2 md:inline-block">
                   <a
-                      href="javascript:void(0)"
+                      href=""
                       className="px-4 py-2 text-white bg-orange-primary font-noah-700 rounded-md shadow hover:bg-gray-800"
                   >
                       Sign in
                   </a>
                   <a
-                      href="javascript:void(0)"
+                      href=""
                       className="px-4 py-2 text-gray-800 font-noah-700 bg-white rounded-md shadow hover:bg-gray-100"
                   >
                       Sign up

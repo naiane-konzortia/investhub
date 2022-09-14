@@ -1,13 +1,14 @@
 import React from 'react';
 import investHubLogoColor from "../../assets/images/svg/investHubLogoColor.svg"
+import banner from "../../assets/images/svg/Banner_InvestHub.png"
 import background from "../../assets/animation/Banner_InvestHub.gif"
 
 export const HeroSection = () => {
 
     return (<>
-<div className="py-20 text-right relative " style={{backgroundImage: "linear-gradient(90deg, #FD7A4F 10%, #E3F550 100%)"}}
+<div className="background-gif bg-center" 
     >
-      <div className="container mx-auto px-6 ">
+      <div className="container py-12 mx-auto px-6 ">
         {/* <h4 className='font-noah-black'>THROUGH</h4> */}
       <img
               src={investHubLogoColor}
