@@ -144,7 +144,6 @@ export const SignUpForm = () => {
                 <button  type="submit" className="bg-orange font-label-white font-size-14 p-2 px-8">
                   SIGN UP
                 </button>
-
               </div>
               </form>
 

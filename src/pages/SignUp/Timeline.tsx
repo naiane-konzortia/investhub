@@ -3,11 +3,14 @@ import { useRedux } from '../../hooks';
 
 export const Timeline = () => {
     const { dispatch, useAppSelector } = useRedux();
-    const { activeStep } = useAppSelector((state) => ({
+    const { activeStep, activeState } = useAppSelector((state) => ({
         activeStep:state.Pages.activeSignUpTimeline,
+        activeState: state.Pages.activeState
   }))
     return (<>
-        <section className="bg-gray">
+    {
+      activeState === "sign_up" &&
+<section className="bg-gray">
       <div className="container mx-auto px-6 py-12 text-center">
         <span className='font-noah-black-700 '>SIGN UP PROCESS</span>
         <div className="flex text-center flex-wrap">
@@ -28,5 +31,15 @@ export const Timeline = () => {
         </div>
       </div>
     </section>
+    }
+    {
+      activeState === "sign_in" &&
+      <section className="bg-gray">
+      <div className="container mx-auto px-6 py-12 text-center">
+        <span className='font-noah-black-700 '>LOG IN PROCESS</span>
+      </div>
+    </section>
+    }
+        
     </>)
 }

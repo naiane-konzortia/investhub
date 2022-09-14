@@ -24,7 +24,7 @@ export const setActiveSubstep = (activeSubStep: boolean) => {
   };
 };
 
-export const setActiveState = (activeState: "landing_page" | "sign_up") => {
+export const setActiveState = (activeState: "landing_page" | "sign_up" | "sign_in") => {
   return {
     type: PagesActionTypes.SET_ACTIVE_STATE,
     payload: { activeState },

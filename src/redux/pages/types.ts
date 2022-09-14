@@ -22,7 +22,7 @@ export enum PagesActionTypes {
     isActivePageSet: boolean;
     activeTimelineStep: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
     activeSubStep: boolean;
-    activeState: "landing_page" | "sign_up";
+    activeState: "landing_page" | "sign_up" | "sign_in";
     activeSignUpTimeline: "create_user" | "more_info" | "raise_info" | "finish_page";
     investorType: "invest" | "raise" | null;
     signUpData: IData | null;

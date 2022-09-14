@@ -3,6 +3,7 @@ import { Footer } from '../../components/Footer';
 import NavBar, { Header } from '../../components/Header';
 import { useRedux } from '../../hooks';
 import { CreateUser } from './CreateUser';
+import { SignIn } from './SignIn';
 import { Timeline } from './Timeline';
 
 export const SignUp = () => {
@@ -12,6 +13,13 @@ export const SignUp = () => {
   }))
     return(<>
     <Timeline/>
-    <CreateUser/>
+    {
+      activeState === "sign_up" &&
+      <CreateUser/>
+    }
+    {
+      activeState === "sign_in" &&
+      <SignIn/>
+    }
     </>)
 }

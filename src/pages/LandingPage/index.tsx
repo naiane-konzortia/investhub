@@ -27,7 +27,7 @@ export const LandingPage = () => {
     <Partners/>
     </>
     }
-    {activeState === "sign_up" &&
+    {(activeState === "sign_up" || activeState === "sign_in" )&&
     <SignUp/>
     }
     <Footer/>
