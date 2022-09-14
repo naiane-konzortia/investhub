@@ -30,8 +30,6 @@ export const LandingPage = () => {
     {activeState === "sign_up" &&
     <SignUp/>
     }
-
-
     <Footer/>
     </>)
 }

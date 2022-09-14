@@ -186,15 +186,13 @@ export default function NavBar() {
               </div>
               {
                 !logged && 
-                <div className="hidden space-x-2 md:inline-block">
+                <div className="hidden pointer space-x-2 md:inline-block">
                   <a
-                      href=""
                       className="px-4 py-2 text-white bg-orange-primary font-noah-700 rounded-md shadow hover:bg-gray-800"
                   >
                       Sign in
                   </a>
                   <a
-                      href=""
                       className="px-4 py-2 text-gray-800 font-noah-700 bg-white rounded-md shadow hover:bg-gray-100"
                       onClick={() => dispatch(setActiveState("sign_up"))}
                   >

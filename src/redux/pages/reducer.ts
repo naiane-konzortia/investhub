@@ -5,9 +5,9 @@ export const INIT_STATE: PagesState = {
   activePage:"company_details",
   activeTimelineStep: 1,
   activeSubStep: false,
-  activeState:"sign_up",
+  activeState:"landing_page",
   activeSignUpTimeline: "create_user",
-  investorType: "invest",
+  investorType: null,
   signUpData: null,
   nameUser:null
 };
