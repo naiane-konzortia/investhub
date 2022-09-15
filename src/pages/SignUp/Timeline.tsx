@@ -16,9 +16,9 @@ export const Timeline = () => {
         <div className="flex text-center flex-wrap">
           <div className="w-full px-2 mb-4">
             <div className='flex flex-row pt-6 center-div container'>
-            <div className={`space-line font-label-black-700`}>Create account</div>
-            <div className={(activeStep === 'more_info' ||  activeStep === 'finish_page') ? `space-line font-label-black-700` : `space-line font-label-gray-300`}>More information</div>
-            <div className={activeStep === 'finish_page' ? `space-line font-label-black-700` : `space-line font-label-gray-300`}>Email confirmation</div>
+            <div className={`space-line font-label-black-700 font-size-12`}>Create account</div>
+            <div className={(activeStep === 'more_info' ||  activeStep === 'finish_page') ? `space-line font-label-black-700 font-size-12` : `space-line font-label-gray-300 font-size-12`}>More information</div>
+            <div className={activeStep === 'finish_page' ? `space-line font-label-black-700 font-size-12 ` : `space-line font-label-gray-300 font-size-12`}>Email confirmation</div>
             </div>
             <div className=" flex flex-row pt-6 center-div">
                 <div className='black-circle'></div>
