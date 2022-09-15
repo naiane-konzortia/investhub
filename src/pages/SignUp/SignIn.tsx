@@ -9,6 +9,7 @@ import { BsLinkedin } from 'react-icons/bs';
 import { Welcome } from './Welcome';
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
+import { LinkedIn, useLinkedIn } from 'react-linkedin-login-oauth2';
 
 export const SignIn = () => {
     const { dispatch, useAppSelector } = useRedux();
@@ -44,6 +45,20 @@ export const SignIn = () => {
     //   dispatch(setActiveSignUpTimeline('more_info'))
   
     }
+
+    const { linkedInLogin } = useLinkedIn({
+      clientId: process.env.REACT_APP_LINKEDIN_ID as string,
+      // clientSecret: process.env.REACT_APP_API_URL as string,
+      redirectUri: `${process.env.REACT_APP_API_URL}linkedin`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
+      onSuccess: (code) => {
+        console.log(code);
+        // dispatch(login(code))
+        // dispatch(setActiveSignUpTimeline("more_info"));
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
 
     useEffect(() => {
       const initClient = () => {
@@ -99,13 +114,14 @@ export const SignIn = () => {
           <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
+            onClick={linkedInLogin}
           >
             <BsLinkedin />
             <p className="font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
             LinkedIn
             </p>
           </button>
-          <button
+          {/* <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700 py-2  px-10 bg-gray flex items-center w-full mt-10"
           >
@@ -113,7 +129,7 @@ export const SignIn = () => {
             <p className="text-base mt-1 font-size-12 font-label-gray-700 ml-2 mr-2 break-normal text-gray-700">
             AppleID
             </p>
-          </button>
+          </button> */}
         </div>
       </div>
         <div className="flex items-center w-full ">

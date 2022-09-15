@@ -64,6 +64,7 @@ const Register = (state = INIT_STATE, action: any) => {
         ...state,
         loading: true,
         isUserRegistered: false,
+        user: action.payload.data,
       };
     }
     default:

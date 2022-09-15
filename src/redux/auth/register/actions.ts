@@ -25,9 +25,9 @@ export const userRegister = (user: any) => {
   };
 };
 
-export const login = (params:{}) => {
+export const login = (data:{}) => {
   return {
     type: AuthRegisterActionTypes.LOGIN,
-    payload: { params },
+    payload: { data },
   };
 };

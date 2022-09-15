@@ -807,3 +807,36 @@ mix-blend-mode: normal;
   height: 30px;
   border: 0.5px solid #bdbdbd;
 }
+
+
+.avatar-sm {
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.avatar-md {
+  height: 4rem;
+  width: 4rem;
+}
+
+.avatar-lg {
+  height: 5rem;
+  width: 5rem;
+}
+
+.avatar-xl {
+  height: 6rem;
+  width: 6rem;
+}
+
+.avatar-title {
+  align-items: center;
+  background-color: #e0ff4f;
+  color:#0E1C28;
+  display: flex;
+  font-weight: 14px;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+

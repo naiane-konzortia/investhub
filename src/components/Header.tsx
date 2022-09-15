@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import I from "../assets/images/svg/I.svg";
 import N from "../assets/images/svg/N.svg";
 import V from "../assets/images/svg/V.svg";
@@ -86,9 +86,14 @@ export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
   const [logged, setLogged] = useState(false);
   const { dispatch, useAppSelector } = useRedux();
-  const { activePage } = useAppSelector((state) => ({
+  const { activePage, userLogged } = useAppSelector((state) => ({
     activePage:state.Pages.activePage,
+    userLogged:state.Register.user,
 }))
+const [nameUser, setNameUser] = useState(userLogged && userLogged.wt.rV[0])
+useEffect(() => {
+    setNameUser(userLogged && userLogged.wt.rV[0])
+},[userLogged])
 
   return (
       <nav className="w-full bg-header shadow">
@@ -186,7 +191,7 @@ export default function NavBar() {
                   </div>
               </div>
               {
-                !logged && 
+                userLogged === null ? 
                 <div className="hidden pointer space-x-2 md:inline-block">
                   <a
                       className="px-4 py-2 text-white bg-orange-primary font-noah-700 rounded-md shadow hover:bg-gray-800"
@@ -201,28 +206,35 @@ export default function NavBar() {
                       Sign up
                   </a>
               </div>
+              :
+              <div className="flex flex-row ">
+              <div className="hidden space-x-2 lg:flex md:flex" onClick={() => setLogged(!logged)}>
+              <div className="user-avatar avatar-sm center-div">{nameUser}</div>
+              <div className="font-label-italic-orange mt-3">
+              <IoIosArrowDown/>
+              </div>
+          </div>
+          </div>
               }
               
-              {logged &&
+              {/* {userLogged &&
               <main>
               <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-                {/* <!-- Replace with your content --> */}
                 <div className="px-4 py-6 sm:px-0">
                   <div className="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>
                 </div>
-                {/* <!-- /End replace --> */}
               </div>
             </main>
-          //                     <div className="hidden space-x-2 md:inline-block" onClick={() => setLogged(!logged)}>
-          //     <div className="ml-5 pointer absolute flex grow w-40 align-items-end each-wrap w-2/12 place-content-end align-content-end text-end right-div  lg:ml-10 md:ml-10">
-          //     <div className="user-avatar center-div">M</div>
-          //     <div className="center-div flex align-content-center mb-3 font-label-italic-orange">
-          //     <IoIosArrowDown/>
-          //     </div>
-          //     </div>
-          // </div>
+                              <div className="hidden space-x-2 md:inline-block" onClick={() => setLogged(!logged)}>
+              <div className="ml-5 pointer absolute flex grow w-40 align-items-end each-wrap w-2/12 place-content-end align-content-end text-end right-div  lg:ml-10 md:ml-10">
+              <div className="user-avatar center-div">M</div>
+              <div className="center-div flex align-content-center mb-3 font-label-italic-orange">
+              <IoIosArrowDown/>
+              </div>
+              </div>
+          </div>
 
-            }
+            } */}
             </div>
               
       </nav>

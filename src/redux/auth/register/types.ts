@@ -6,11 +6,22 @@ export enum AuthRegisterActionTypes {
   LOGIN = "@@auth/login/LOGIN",
 }
 
+export type IUser = {
+ wt:{
+  Ad:string;
+  rV: string;
+  uT:string;
+  hK:string;
+  cu:string;
+  googleId:string;
+ };
+ tokenId:string;
 
+}
 export interface AuthRegisterState {
   registrationError: any;
   message: string;
   loading: boolean;
-  user: object | null;
+  user: IUser | null;
   isUserRegistered: boolean;
 }

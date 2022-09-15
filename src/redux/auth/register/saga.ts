@@ -39,34 +39,16 @@ function* registerUser({ payload: { user } }: any) {
   }
 }
 
-function* login({ payload: {params} }: any) {
-  try {
-    const response: Promise<any> = yield call(loginApi, params);
-    yield put(
-      authRegisterApiResponseSuccess(
-        AuthRegisterActionTypes.LOGIN,
-        response
-      )
-    );
-  } catch (error: any) {
-    yield put(
-      authRegisterApiResponseError(AuthRegisterActionTypes.LOGIN, error)
-    );
-  }
-}
 
 export function* watchUserRegister() {
   yield takeEvery(AuthRegisterActionTypes.REGISTER_USER, registerUser);
 }
 
-export function* watchLogin() {
-  yield takeEvery(AuthRegisterActionTypes.LOGIN, login);
-}
+
 
 function* registerSaga() {
   yield all([
     fork(watchUserRegister),
-    fork(watchLogin)
   ]);
 }
 

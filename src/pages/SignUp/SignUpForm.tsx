@@ -8,11 +8,12 @@ import { useForm } from "react-hook-form";
 import { Form, Input } from "reactstrap";
 import FormInput from "../../components/FormInput";
 import { useRedux } from "../../hooks";
-import { setActiveSignUpTimeline, setSignUpData } from "../../redux/actions";
+import { login, setActiveSignUpTimeline, setSignUpData } from "../../redux/actions";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
+import { LinkedIn, useLinkedIn } from 'react-linkedin-login-oauth2';
 
 export const SignUpForm = () => {
   const { dispatch, useAppSelector } = useRedux();
@@ -68,11 +69,28 @@ export const SignUpForm = () => {
   });
 
   const onSuccess = (res: any) => {
-    console.log("success:", res);
+    console.log("success google:", res);
+    // dispatch(login(res))
+    // dispatch(setActiveSignUpTimeline("more_info"));
+
   };
   const onFailure = (err: any) => {
     console.log("failed:", err);
   };
+  
+  const { linkedInLogin } = useLinkedIn({
+    clientId: process.env.REACT_APP_LINKEDIN_ID as string,
+    // clientSecret: process.env.REACT_APP_API_URL as string,
+    redirectUri: `${process.env.REACT_APP_API_URL}linkedin`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
+    onSuccess: (code) => {
+      console.log(code);
+      // dispatch(login(code))
+      // dispatch(setActiveSignUpTimeline("more_info"));
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
 
 
@@ -121,16 +139,18 @@ export const SignUpForm = () => {
               Google
             </p>
           </button> */}
+          
           <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
-          >
+            onClick={linkedInLogin}
+         >
             <BsLinkedin />
             <p className="font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
               LinkedIn
             </p>
           </button>
-          <button
+          {/* <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700 py-2  px-10 bg-gray flex items-center w-full mt-10"
           >
@@ -138,7 +158,7 @@ export const SignUpForm = () => {
             <p className="text-base mt-1 font-size-12 font-label-gray-700 ml-2 mr-2 break-normal text-gray-700">
               AppleID
             </p>
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="flex items-center w-full ">
