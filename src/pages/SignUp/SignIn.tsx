@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -7,6 +7,8 @@ import FormInput from '../../components/FormInput';
 import { AiFillApple, AiOutlineGoogle } from 'react-icons/ai';
 import { BsLinkedin } from 'react-icons/bs';
 import { Welcome } from './Welcome';
+import { gapi } from "gapi-script";
+import GoogleLogin from "react-google-login";
 
 export const SignIn = () => {
     const { dispatch, useAppSelector } = useRedux();
@@ -42,6 +44,24 @@ export const SignIn = () => {
     //   dispatch(setActiveSignUpTimeline('more_info'))
   
     }
+
+    useEffect(() => {
+      const initClient = () => {
+        gapi.client.init({
+          clientId: process.env.REACT_GOOGLE_ID,
+          scope: "",
+        });
+      };
+      gapi.load("client:auth2", initClient);
+    });
+  
+    const onSuccess = (res: any) => {
+      console.log("success:", res);
+    };
+    const onFailure = (err: any) => {
+      console.log("failed:", err);
+    };
+
     return(    <>
     <div className='flex flex-row'>
      <div className="bg-welcome each-wrap  w-6/12 hidden md:flex lg:flex">
@@ -56,15 +76,26 @@ export const SignIn = () => {
         <hr className="w-full" />
       </div>
         <div className="flex flex-col lg:flex-row md:flex-row mb-12">
-          <button
-            type="button"
-            className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
-          >
-            <AiOutlineGoogle />
-            <p className=" font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
-            Google
-            </p>
-          </button>
+        <GoogleLogin
+          clientId={process.env.REACT_APP_GOOGLE_ID as string}
+          buttonText="Sign in with Google"
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+          cookiePolicy={'single_host_origin'}
+          isSignedIn={true}
+              render={renderProps => (
+                <button
+                type="button"
+                className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
+                onClick={renderProps.onClick}
+              >
+                <AiOutlineGoogle />
+                <p className=" font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
+                  Google
+                </p>
+              </button>
+    )}
+      />
           <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"

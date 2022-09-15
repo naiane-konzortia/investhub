@@ -272,7 +272,6 @@ export const MoreInfo = () => {
                   )}
                 />
                 </>
-
        }
        { investorType === 'raise' ?
        <>

@@ -6,14 +6,27 @@ import animation from "../../assets/animation/rocketLaunch.json"
 
 export const Welcome = () => {
   const { dispatch, useAppSelector } = useRedux();
-  const { investorType, activeStep } = useAppSelector((state) => ({
+  const { investorType, activeStep, activeState } = useAppSelector((state) => ({
       investorType:state.Pages.investorType,
       activeStep:state.Pages.activeSignUpTimeline,
+      activeState: state.Pages.activeState
 }))
 
     return(<>
     {
-      activeStep !== 'finish_page' ?
+      (activeState === "sign_up" && activeStep === 'finish_page') ?
+      <div className=' h-full w-full center-div p-20'>
+      <div className="items-center flex align-items-center center-div justify-content-center  ">
+      <Player
+      src={animation}
+      className="player"
+      loop
+      autoplay
+      style={{height: '70%', width: '70%'}}
+      />
+      </div>
+    </div>
+      :
       <div className='bg-blue flex flex-col h-full w-full center-div p-20'>
       <span className='font-noah-magnolia-700 m-16'>WELCOME TO</span>
       <img
@@ -23,18 +36,6 @@ export const Welcome = () => {
               />
       <span className='mt-16 font-noah-magnolia-300 m-16'>
         Start to raise / invest / share your knowledge and MORE in the best global HUB!</span>
-      </div>
-      :
-      <div className=' h-full w-full center-div p-20'>
-        <div className="items-center flex align-items-center center-div justify-content-center  ">
-        <Player
-        src={animation}
-        className="player"
-        loop
-        autoplay
-        style={{height: '70%', width: '70%'}}
-        />
-        </div>
       </div>
     }
 
