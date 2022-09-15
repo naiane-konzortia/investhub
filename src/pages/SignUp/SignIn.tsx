@@ -52,7 +52,7 @@ export const SignIn = () => {
         <div className="w-full">
       <div className="flex items-center w-full ">
         <hr className="w-full" />
-        <div className="font-size-14 w-full font-label">SIGN UP WITH</div>
+        <div className="font-size-14 w-full font-label">SIGN IN WITH</div>
         <hr className="w-full" />
       </div>
         <div className="flex flex-col lg:flex-row md:flex-row mb-12">
