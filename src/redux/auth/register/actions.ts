@@ -22,7 +22,7 @@ export const userRegister = (user: any) => {
   return {
     type: AuthRegisterActionTypes.REGISTER_USER,
     payload: { user },
-  };
+  }; 
 };
 
 export const login = (data:{}) => {
