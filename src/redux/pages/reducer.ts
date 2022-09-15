@@ -56,7 +56,7 @@ const Pages = (state = INIT_STATE, action: any) => {
       console.log(action.payload)
       return {
         ...state,
-        investorType:action.payload.signUpData,
+        signUpData:action.payload.signUpData,
         nameUser: action.payload.signUpData.name
       };
     }

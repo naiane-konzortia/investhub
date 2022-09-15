@@ -208,7 +208,8 @@ export const MoreInfo = () => {
         dispatch(setActiveSignUpTimeline('finish_page'))
 
     }
-
+    console.log('investor type', investorType)
+ 
     return(<>
     <section className="container md:items-center w-full  mx-auto px-6 p-10">
         <div className="flex flex-col ">
@@ -230,7 +231,7 @@ export const MoreInfo = () => {
     // value={personTags}
      isClearable={false}
      styles={customStyles}
-     placeholder={<div className="font-label pl-1">Countries</div>}
+     placeholder={<div className="font-label pl-1">Choose an Option</div>}
      // hideSelectedOptions={false}
      className="font-label align-items-left flex align-items-center pl-1 "
      maxMenuHeight={136}
@@ -290,7 +291,7 @@ export const MoreInfo = () => {
     // value={personTags}
      isClearable={false}
      styles={customStyles}
-     placeholder={<div className="font-label pl-1">Countries</div>}
+     placeholder={<div className="font-label pl-1">Choose an Option</div>}
      // hideSelectedOptions={false}
      className="font-label align-items-left flex align-items-center pl-1 "
      maxMenuHeight={136}
