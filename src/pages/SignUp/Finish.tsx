@@ -17,7 +17,7 @@ export const Finish = () => {
     <>
       <section className="bg-white center-div ">
         <div className="container mx-auto px-6 py-20">
-          {activeState === "sign_in" && (
+          {activeState === "sign_in" &&  (
             <>
             <h2 className="text-4xl font-bold text-center font-noah-700 text-gray-800 mb-8">
               Welcome!

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -10,17 +10,19 @@ import { Welcome } from "./Welcome";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
 import { LinkedIn, useLinkedIn } from "react-linkedin-login-oauth2";
-import {
-  setActiveSignUpTimeline,
-  setActiveTimelineStep,
-} from "../../redux/actions";
+
 import { Finish } from "./Finish";
+import { setLoggedUser } from "../../redux/actions";
 
 export const SignIn = () => {
   const { dispatch, useAppSelector } = useRedux();
-  const { activeSignUpTimeline } = useAppSelector((state) => ({
+  const { activeSignUpTimeline,loggedUser } = useAppSelector((state) => ({
     activeSignUpTimeline: state.Pages.activeSignUpTimeline,
+    loggedUser:state.Register.loggedUser,
   }));
+
+
+
   const resolver = yupResolver(
     yup.object().shape({
       email: yup.string().required("Please Enter E-mail."),
@@ -43,6 +45,7 @@ export const SignIn = () => {
 
   const onSubmitForm = (values: any) => {
     console.log("values", values);
+    // dispatch(setLoggedUser(values))
     //   dispatch(setSignUpData({name: values.name, email: values.email, password:values.password}))
     //   dispatch(setActiveSignUpTimeline('more_info'))
   };
@@ -78,9 +81,14 @@ export const SignIn = () => {
     console.log("failed:", err);
   };
 
+  const [nameUser, setNameUser] = useState(loggedUser && loggedUser.email)
+useEffect(() => {
+    setNameUser(loggedUser && loggedUser.email)
+},[loggedUser])
+
   return (
     <>
-      {activeSignUpTimeline === "create_user" && (
+      {loggedUser === null && (
         <div className="flex flex-row">
           <div className="bg-welcome each-wrap  w-6/12 hidden md:flex lg:flex">
             <Welcome />
@@ -177,7 +185,7 @@ export const SignIn = () => {
                   type="submit"
                   className="bg-orange font-label-white font-size-14 p-2 px-8"
                 >
-                  SIGN UP
+                  SIGN IN
                 </button>
               </div>
             </form>
@@ -212,7 +220,7 @@ export const SignIn = () => {
           </div>
         </div>
       )}
-      {activeSignUpTimeline === "finish_page" && (
+      {loggedUser  && (
         <div className="flex flex-row ">
           <Welcome />
           <div className="md:items-center flex center-div mx-auto px-6 p-10">

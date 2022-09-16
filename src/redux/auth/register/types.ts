@@ -4,9 +4,10 @@ export enum AuthRegisterActionTypes {
 
   REGISTER_USER = "@@auth/register/REGISTER_USER",
   LOGIN = "@@auth/login/LOGIN",
+  LOGGED_USER = "@@auth/login/LOGGED_USER"
 }
 
-export type IUser = {
+export type IUserCallback = {
  wt:{
   Ad:string;
   rV: string;
@@ -16,12 +17,17 @@ export type IUser = {
   googleId:string;
  };
  tokenId:string;
+}
 
+export type IUser = {
+  email:string;
+  password:string;
 }
 export interface AuthRegisterState {
   registrationError: any;
   message: string;
   loading: boolean;
-  user: IUser | null;
+  user: IUserCallback | null;
+  loggedUser:IUser | null;
   isUserRegistered: boolean;
 }

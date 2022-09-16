@@ -6,6 +6,7 @@ export const INIT_STATE: AuthRegisterState = {
   loading: false,
   user: null,
   isUserRegistered: false,
+  loggedUser:null
 };
 
 const Register = (state = INIT_STATE, action: any) => {
@@ -27,6 +28,11 @@ const Register = (state = INIT_STATE, action: any) => {
               user: action.payload.data,
               registrationError: null,
               isUserRegistered: true,
+            };
+          case AuthRegisterActionTypes.LOGGED_USER:
+            return {
+              ...state,
+              loggedUser: action.payload.data,
             };
         default:
           return { ...state };
@@ -67,6 +73,11 @@ const Register = (state = INIT_STATE, action: any) => {
         user: action.payload.data,
       };
     }
+    case AuthRegisterActionTypes.LOGGED_USER:
+      return {
+        ...state,
+        loggedUser: action.payload.data,
+      };
     default:
       return { ...state };
   }

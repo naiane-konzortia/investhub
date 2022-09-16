@@ -31,3 +31,10 @@ export const login = (data:{}) => {
     payload: { data },
   };
 };
+
+export const setLoggedUser = (data:{}) => {
+  return {
+    type: AuthRegisterActionTypes.LOGGED_USER,
+    payload: { data },
+  };
+};
