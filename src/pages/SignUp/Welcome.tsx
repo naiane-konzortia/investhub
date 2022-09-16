@@ -27,7 +27,7 @@ export const Welcome = () => {
       </div>
     </div>
       :
-      <div className='bg-blue flex flex-col h-full w-full center-div p-20'>
+      <div className='bg-blue flex flex-col h-full  center-div p-20'>
       <span className='font-noah-magnolia-700 m-16'>WELCOME TO</span>
       <img
                 src={InvestHub}
