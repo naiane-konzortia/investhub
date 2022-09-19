@@ -15,8 +15,7 @@ const App = () => (
       <Routes>
         <Route path="/createcampaign" element={<StartCampaign />}></Route>
         <Route path="/" element={<LandingPage />}></Route>
-        <Route  path="/linkedin" element={<LinkedInCallback/>} />
-
+        {/* <Route  path="/linkedin" element={<LinkedInCallback/>} /> */}
       </Routes>
     </Router>
   </div>

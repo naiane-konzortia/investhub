@@ -53,7 +53,7 @@ export const SignIn = () => {
   const { linkedInLogin } = useLinkedIn({
     clientId: process.env.REACT_APP_LINKEDIN_ID as string,
     // clientSecret: process.env.REACT_APP_API_URL as string,
-    redirectUri: `${process.env.REACT_APP_API_URL}linkedin`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
+    redirectUri: `${process.env.REACT_APP_API_URL}`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
     onSuccess: (code) => {
       console.log(code);
       // dispatch(login(code))
