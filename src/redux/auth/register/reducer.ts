@@ -40,6 +40,26 @@ const Register = (state = INIT_STATE, action: any) => {
               ...state,
               linkedinCode: action.payload.data,
             };
+          case AuthRegisterActionTypes.SIGN_UP:
+            return {
+              ...state,
+              user: action.payload.data,
+            };
+          case AuthRegisterActionTypes.GOOGLE_AUTH:
+            return {
+              ...state,
+              user: action.payload.data,
+            };
+          case AuthRegisterActionTypes.LINKEDIN_AUTH:
+            return {
+              ...state,
+              user: action.payload.data,
+            };
+          case AuthRegisterActionTypes.LOGIN:
+            return {
+              ...state,
+              loggedUser: action.payload.data,
+            };
         default:
           return { ...state };
       }
@@ -64,6 +84,26 @@ const Register = (state = INIT_STATE, action: any) => {
               return {
                 ...state,
                 linkedinCodeError: action.payload.error,
+              };
+            case AuthRegisterActionTypes.SIGN_UP:
+              return {
+                ...state,
+                signUpError: action.payload.error,
+              };
+            case AuthRegisterActionTypes.GOOGLE_AUTH:
+              return {
+                ...state,
+                googleSignUpError: action.payload.error,
+              };
+            case AuthRegisterActionTypes.LINKEDIN_AUTH:
+              return {
+                ...state,
+                linkedinSignUpError: action.payload.error,
+              };
+            case AuthRegisterActionTypes.LOGIN:
+              return {
+                ...state,
+                loginError: action.payload.error,
               };
         default:
           return { ...state };

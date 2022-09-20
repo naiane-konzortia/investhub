@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { Form, Input } from "reactstrap";
 import FormInput from "../../components/FormInput";
 import { useRedux } from "../../hooks";
-import { login, setActiveSignUpTimeline, setSignUpData, linkedinAuth, setActiveState } from "../../redux/actions";
+import { login, setActiveSignUpTimeline, setSignUpData, linkedinAuth, setActiveState, googleSignUp, linkedinSignUp, signUp } from "../../redux/actions";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { gapi } from "gapi-script";
@@ -78,6 +78,11 @@ export const SignUpForm = () => {
   const onFailure = (err: any) => {
     console.log("failed:", err);
   };
+
+  // dispatch(googleSignUp({}))
+  // dispatch(linkedinSignUp({}))
+  // dispatch(signUp({}))
+  // dispatch(login({}))
   
   const { linkedInLogin } = useLinkedIn({
     clientId: process.env.REACT_APP_LINKEDIN_ID as string,
@@ -86,13 +91,15 @@ export const SignUpForm = () => {
     onSuccess: (code) => {
 
       console.log('code linkedin',code);
-      dispatch(linkedinAuth({
-        grant_type:'authorization_code',
-        code:code,
-        client_id:process.env.REACT_APP_LINKEDIN_ID,
-        client_secret:process.env.REACT_APP_LINKEDIN_SECRET,
-        redirect_uri:`${process.env.REACT_APP_API_URL}`
-      }))
+
+      // dispatch(linkedinAuth({
+      //   grant_type:'authorization_code',
+      //   code:code,
+      //   client_id:process.env.REACT_APP_LINKEDIN_ID,
+      //   client_secret:process.env.REACT_APP_LINKEDIN_SECRET,
+      //   redirect_uri:`${process.env.REACT_APP_API_URL}`
+      // }))
+
       // window.location.href =
       // process.env.REACT_APP_LOGIN_URL + "login-success";
       // dispatch(login(code))

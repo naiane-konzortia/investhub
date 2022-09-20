@@ -7,11 +7,23 @@ const registerUser = (params: any) => {
 };
 
 const login = (params: any) => {
-  return api.create(`${url.USERS}${url.LOGIN}`, params)
+  return api.create(`${url.API}${url.LOGIN}`, params)
+}
+
+const signUp = (params:any) => {
+  return api.create(`${url.API}${url.SIGNUP}`, params)
+}
+
+const signUpGoogle = (params:any) => {
+  return api.create(`${url.API}${url.GOOGLE}${url.LOGIN}`, params)
+}
+
+const signUpLinkedin = (params:any) => {
+  return api.create(`${url.API}${url.GOOGLE}${url.LOGIN}`, params)
 }
 
 
 
 export { 
-    registerUser, login
+    registerUser, login, signUp, signUpGoogle, signUpLinkedin
 };

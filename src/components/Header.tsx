@@ -92,7 +92,9 @@ export default function NavBar() {
 }))
 const [nameUser, setNameUser] = useState(userLogged && userLogged.wt.rV[0])
 useEffect(() => {
-    setNameUser(userLogged && userLogged.wt.rV[0])
+    if(userLogged !== null){
+        setNameUser(userLogged.wt.rV[0])
+    }
 },[userLogged])
 
   return (

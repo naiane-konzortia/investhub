@@ -45,3 +45,24 @@ export const linkedinAuth = (data:{}) => {
     payload: { data },
   };
 };
+
+export const signUp = (user:{}) => {
+  return {
+    type: AuthRegisterActionTypes.SIGN_UP,
+    payload: { user },
+  };
+};
+
+export const googleSignUp = (data:{}) => {
+  return {
+    type: AuthRegisterActionTypes.GOOGLE_AUTH,
+    payload: { data },
+  };
+};
+
+export const linkedinSignUp = (data:{}) => {
+  return {
+    type: AuthRegisterActionTypes.LINKEDIN_AUTH,
+    payload: { data },
+  };
+};

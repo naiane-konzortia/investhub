@@ -5,7 +5,9 @@ export enum AuthRegisterActionTypes {
   REGISTER_USER = "@@auth/register/REGISTER_USER",
   LOGIN = "@@auth/login/LOGIN",
   LOGGED_USER = "@@auth/login/LOGGED_USER",
-  LINKEDIN_AUTH = "@@auth/login/LINKEDIN_AUTH"
+  GOOGLE_AUTH = "@@auth/login/LINKEDIN_AUTH",
+  LINKEDIN_AUTH = "@@auth/login/LINKEDIN_AUTH",
+  SIGN_UP = "@@auth/register/SIGN_UP"
 }
 
 export type IUserCallback = {
