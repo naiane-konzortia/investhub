@@ -8,12 +8,13 @@ import { useForm } from "react-hook-form";
 import { Form, Input } from "reactstrap";
 import FormInput from "../../components/FormInput";
 import { useRedux } from "../../hooks";
-import { login, setActiveSignUpTimeline, setSignUpData } from "../../redux/actions";
+import { login, setActiveSignUpTimeline, setSignUpData, linkedinAuth, setActiveState } from "../../redux/actions";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
 import { LinkedIn, useLinkedIn } from 'react-linkedin-login-oauth2';
+
 
 export const SignUpForm = () => {
   const { dispatch, useAppSelector } = useRedux();
@@ -81,9 +82,19 @@ export const SignUpForm = () => {
   const { linkedInLogin } = useLinkedIn({
     clientId: process.env.REACT_APP_LINKEDIN_ID as string,
     // clientSecret: process.env.REACT_APP_API_URL as string,
-    redirectUri: `${process.env.REACT_APP_API_URL}`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
+    redirectUri: `${process.env.REACT_APP_API_URL}auth/linkedin/callback`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
     onSuccess: (code) => {
-      console.log(code);
+
+      console.log('code linkedin',code);
+      dispatch(linkedinAuth({
+        grant_type:'authorization_code',
+        code:code,
+        client_id:process.env.REACT_APP_LINKEDIN_ID,
+        client_secret:process.env.REACT_APP_LINKEDIN_SECRET,
+        redirect_uri:`${process.env.REACT_APP_API_URL}`
+      }))
+      // window.location.href =
+      // process.env.REACT_APP_LOGIN_URL + "login-success";
       // dispatch(login(code))
       // dispatch(setActiveSignUpTimeline("more_info"));
     },

@@ -9,7 +9,7 @@ import {
 
 import {
   registerUser as registerUserApi,
-  login as loginApi
+  login as loginApi,
  } from "../../../services";
 
  const myDomain = process.env.REACT_APP_PUBLIC_DOMAIN;
@@ -40,9 +40,11 @@ function* registerUser({ payload: { user } }: any) {
 }
 
 
+
 export function* watchUserRegister() {
   yield takeEvery(AuthRegisterActionTypes.REGISTER_USER, registerUser);
 }
+
 
 
 

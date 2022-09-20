@@ -4,7 +4,8 @@ export enum AuthRegisterActionTypes {
 
   REGISTER_USER = "@@auth/register/REGISTER_USER",
   LOGIN = "@@auth/login/LOGIN",
-  LOGGED_USER = "@@auth/login/LOGGED_USER"
+  LOGGED_USER = "@@auth/login/LOGGED_USER",
+  LINKEDIN_AUTH = "@@auth/login/LINKEDIN_AUTH"
 }
 
 export type IUserCallback = {
@@ -30,4 +31,5 @@ export interface AuthRegisterState {
   user: IUserCallback | null;
   loggedUser:IUser | null;
   isUserRegistered: boolean;
+  linkedinCode: any;
 }

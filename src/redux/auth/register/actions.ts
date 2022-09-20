@@ -38,3 +38,10 @@ export const setLoggedUser = (data:{}) => {
     payload: { data },
   };
 };
+
+export const linkedinAuth = (data:{}) => {
+  return {
+    type: AuthRegisterActionTypes.LINKEDIN_AUTH,
+    payload: { data },
+  };
+};

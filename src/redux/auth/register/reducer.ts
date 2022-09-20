@@ -6,7 +6,8 @@ export const INIT_STATE: AuthRegisterState = {
   loading: false,
   user: null,
   isUserRegistered: false,
-  loggedUser:null
+  loggedUser:null,
+  linkedinCode:null
 };
 
 const Register = (state = INIT_STATE, action: any) => {
@@ -34,6 +35,11 @@ const Register = (state = INIT_STATE, action: any) => {
               ...state,
               loggedUser: action.payload.data,
             };
+          case AuthRegisterActionTypes.LINKEDIN_AUTH:
+            return {
+              ...state,
+              linkedinCode: action.payload.data,
+            };
         default:
           return { ...state };
       }
@@ -54,6 +60,11 @@ const Register = (state = INIT_STATE, action: any) => {
               login: action.payload.error,
               isUserRegistered: false,
             };
+            case AuthRegisterActionTypes.LINKEDIN_AUTH:
+              return {
+                ...state,
+                linkedinCodeError: action.payload.error,
+              };
         default:
           return { ...state };
       }
