@@ -86,11 +86,12 @@ export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
   const [logged, setLogged] = useState(false);
   const { dispatch, useAppSelector } = useRedux();
-  const { activePage, userLogged,googleData,user } = useAppSelector((state) => ({
+  const { activePage, userLogged,googleData,user,linkedinEmail } = useAppSelector((state) => ({
     activePage:state.Pages.activePage,
     userLogged:state.Register.loggedUser,
     googleData:state.Register.googleData,
-    user:state.Register.user
+    user:state.Register.user,
+    linkedinEmail:state.Register.linkedinEmail
 }))
 // const [nameUser, setNameUser] = useState(userLogged && userLogged.wt.rV[0])
 // useEffect(() => {
@@ -220,8 +221,12 @@ export default function NavBar() {
                 }
                 {
                     user && 
-                    <div className="user-avatar avatar-sm center-div">W</div>
+                    <div className="user-avatar avatar-sm center-div">{user.full_name[0][0]}</div>
 
+                }
+                {
+                    linkedinEmail &&
+                    <div className="user-avatar avatar-sm center-div">{(linkedinEmail['handle~']['emailAddress'][0]).toUpperCase()}</div>
                 }
               <div className="font-label-italic-orange mt-3">
               <IoIosArrowDown/>

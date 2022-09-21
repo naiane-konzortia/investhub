@@ -38,7 +38,7 @@ function* signUp({ payload: data }: any) {
         response
       )
     );
-    yield call(showSuccessNotification, "Account created with success!");
+    // yield call(showSuccessNotification, "Account created with success!");
     yield put(setActiveSignUpTimeline("finish_page"))
     yield put(signUpData(data.data))
   } catch (error: any) {
@@ -96,8 +96,7 @@ function* linkedinAccessToken({ payload: data }: any) {
         response
       )
     );
-    console.log('response',response)
-
+    console.log('response', response)
   } catch (error: any) {
     yield put(
       authRegisterApiResponseError(AuthRegisterActionTypes.LINKEDIN_ACCESS_TOKEN, error)

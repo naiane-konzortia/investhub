@@ -14,6 +14,15 @@ export enum AuthRegisterActionTypes {
   LINKEDIN_USER_DATA = "@@auth/register/LINKEDIN_USER_DATA"
 }
 
+export type IUserLogged = {
+  category:any,
+  email:any,
+  full_name:any,
+  lead_type:any,
+  max_fund:any,
+  min_fund: any,
+  phone:any
+}
 export type IUserCallback = {
  profileObj:{
   email:string;
@@ -52,7 +61,7 @@ export interface AuthRegisterState {
   registrationError: any;
   message: string;
   loading: boolean;
-  user: IUserCallback | null;
+  user: IUserLogged | null;
   loggedUser:boolean;
   isUserRegistered: boolean;
   linkedinCode: any;
@@ -61,4 +70,5 @@ export interface AuthRegisterState {
   registerUser:boolean;
   linkedinAccessToken:ILinkedInAccessToken | null;
   linkedinUserData:any;
+  linkedinEmail:any;
 }

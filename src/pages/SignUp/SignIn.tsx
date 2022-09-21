@@ -63,7 +63,7 @@ export const SignIn = () => {
         redirect_uri: `${process.env.REACT_APP_LOCAL_URL}auth/linkedin/callback`,
         client_id:process.env.REACT_APP_LINKEDIN_ID,
         client_secret: process.env.REACT_APP_LINKEDIN_SECRET,
-        scope: 'r_liteprofile+r_emailaddress',
+        scope: 'r_liteprofile%20r_emailaddress',
     }))
       // console.log('code linkedin',code);
       // window.location.href =
