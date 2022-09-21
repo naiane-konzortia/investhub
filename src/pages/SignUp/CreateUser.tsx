@@ -3,7 +3,6 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import animation from "../../assets/animation/animation.gif";
 import { useRedux } from "../../hooks";
 import { setInvestorType } from "../../redux/actions";
-import {Facebook,GitHub,Google} from '@mui/icons-material'
 import { Welcome } from "./Welcome";
 import { SignUpForm } from "./SignUpForm";
 import { MoreInfo } from "./MoreInfo";
