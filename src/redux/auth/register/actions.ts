@@ -73,3 +73,17 @@ export const signUpData = (data:{}) => {
     payload: { data },
   };
 };
+
+export const setGoogleData = (data:{}) => {
+  return {
+    type: AuthRegisterActionTypes.GOOGLE_DATA,
+    payload: { data },
+  };
+};
+
+export const setLinkedinAccessToken = (data:{}) => {
+  return {
+    type: AuthRegisterActionTypes.LINKEDIN_ACCESS_TOKEN,
+    payload: { data },
+  };
+};

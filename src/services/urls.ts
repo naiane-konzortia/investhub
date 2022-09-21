@@ -4,3 +4,4 @@ export const API = "/api";
 export const SIGNUP = "/signup"
 export const GOOGLE = "/google"
 export const LINKEDIN = "/linkedin"
+export const AUTH = "/auth"

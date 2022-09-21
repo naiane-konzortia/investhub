@@ -8,7 +8,11 @@ export const INIT_STATE: AuthRegisterState = {
   isUserRegistered: false,
   loggedUser:false,
   linkedinCode:null,
-  signUpData:null
+  signUpData:null,
+  googleData:null,
+  registerUser:false,
+  linkedinAccessToken:null,
+  linkedinUserData:null
 };
 
 const Register = (state = INIT_STATE, action: any) => {
@@ -36,24 +40,30 @@ const Register = (state = INIT_STATE, action: any) => {
             return {
               ...state,
             };
-          case AuthRegisterActionTypes.LINKEDIN_AUTH:
-            return {
-              ...state,
-              linkedinCode: action.payload.data,
-            };
           case AuthRegisterActionTypes.SIGN_UP:
             return {
               ...state,
+              registerUser:true
             };
           case AuthRegisterActionTypes.GOOGLE_AUTH:
             return {
               ...state,
-               user: null,
+              loggedUser:true,
             };
           case AuthRegisterActionTypes.LINKEDIN_AUTH:
             return {
               ...state,
-              user: null,
+              loggedUser:true,
+            };
+          case AuthRegisterActionTypes.LINKEDIN_ACCESS_TOKEN:
+            return {
+              ...state,
+              linkedinAccessToken:action.payload.data.data,
+            };
+          case AuthRegisterActionTypes.LINKEDIN_USER_DATA:
+            return {
+              ...state,
+              linkedinUserData:action.payload.data,
             };
 
         default:
@@ -76,11 +86,6 @@ const Register = (state = INIT_STATE, action: any) => {
               login: action.payload.error,
               isUserRegistered: false,
             };
-            case AuthRegisterActionTypes.LINKEDIN_AUTH:
-              return {
-                ...state,
-                linkedinCodeError: action.payload.error,
-              };
             case AuthRegisterActionTypes.SIGN_UP:
               return {
                 ...state,
@@ -101,6 +106,16 @@ const Register = (state = INIT_STATE, action: any) => {
                 ...state,
                 loginError: action.payload.error,
               };
+              case AuthRegisterActionTypes.LINKEDIN_ACCESS_TOKEN:
+                return {
+                  ...state,
+                  linkedinError:action.payload.error,
+                };
+                case AuthRegisterActionTypes.LINKEDIN_USER_DATA:
+                  return {
+                    ...state,
+                    linkedinUserDataError:action.payload.error,
+                  };
         default:
           return { ...state };
       }
@@ -112,12 +127,15 @@ const Register = (state = INIT_STATE, action: any) => {
         isUserRegistered: false,
       };
     }
-
-
     case AuthRegisterActionTypes.SIGN_UP_DATA:
       return {
         ...state,
         signUpData: action.payload.data,
+      };
+    case AuthRegisterActionTypes.GOOGLE_DATA:
+      return {
+        ...state,
+        googleData: action.payload.data,
       };
     default:
       return { ...state };

@@ -6,6 +6,7 @@ import {
   authRegisterApiResponseSuccess,
   authRegisterApiResponseError,
   signUpData,
+  linkedinSignUp,
 } from "./actions";
 import {
   showErrorNotification,
@@ -16,7 +17,8 @@ import {
   login as loginApi,
   signUp as signUpApi,
   signUpGoogle as signUpGoogleApi,
-  signUpLinkedin as signUpLinkedinApi
+  signUpLinkedin as signUpLinkedinApi,
+  linkedinAccessToken as linkedinAccessTokenApi
  } from "../../../services";
 import { setActiveSignUpTimeline } from "../../actions";
 import { toast } from "react-toastify";
@@ -57,6 +59,8 @@ function* signUpGoogle({ payload: data }: any) {
         response
       )
     );
+    yield call(showSuccessNotification, "Sign in from google with success!");
+    yield put(setActiveSignUpTimeline("more_info"))
   } catch (error: any) {
     yield put(
       authRegisterApiResponseError(AuthRegisterActionTypes.GOOGLE_AUTH, error)
@@ -65,17 +69,38 @@ function* signUpGoogle({ payload: data }: any) {
 }
 
 function* signUpLinkedin({ payload: data }: any) {
+
   try {
-    const response: Promise<any> = yield call(signUpLinkedinApi, data);
+    const response: Promise<any> = yield call(signUpLinkedinApi, data.access_token);
+    console.log('response',response)
     yield put(
       authRegisterApiResponseSuccess(
         AuthRegisterActionTypes.LINKEDIN_AUTH,
         response
       )
     );
+  // yield put(linkedinSignUp({response}))
   } catch (error: any) {
     yield put(
       authRegisterApiResponseError(AuthRegisterActionTypes.LINKEDIN_AUTH, error)
+    );
+  }
+}
+
+function* linkedinAccessToken({ payload: data }: any) {
+  try {
+    const response: Promise<any> = yield call(linkedinAccessTokenApi, data);
+    yield put(
+      authRegisterApiResponseSuccess(
+        AuthRegisterActionTypes.LINKEDIN_ACCESS_TOKEN,
+        response
+      )
+    );
+    console.log('response',response)
+
+  } catch (error: any) {
+    yield put(
+      authRegisterApiResponseError(AuthRegisterActionTypes.LINKEDIN_ACCESS_TOKEN, error)
     );
   }
 }
@@ -112,6 +137,10 @@ export function* watchSignUpLinkedin() {
   yield takeEvery(AuthRegisterActionTypes.LINKEDIN_AUTH, signUpLinkedin);
 }
 
+export function* watchLinkedinAccessToken() {
+  yield takeEvery(AuthRegisterActionTypes.LINKEDIN_ACCESS_TOKEN, linkedinAccessToken);
+}
+
 export function* watchLogin() {
   yield takeEvery(AuthRegisterActionTypes.LOGIN, login);
 }
@@ -125,6 +154,7 @@ function* registerSaga() {
     fork(watchSignUpGoogle),
     fork(watchSignUpLinkedin),
     fork(watchLogin),
+    fork(watchLinkedinAccessToken),
   ]);
 }
 

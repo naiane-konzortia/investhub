@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -12,13 +12,14 @@ import GoogleLogin from "react-google-login";
 import { LinkedIn, useLinkedIn } from "react-linkedin-login-oauth2";
 
 import { Finish } from "./Finish";
-import { login, setLoggedUser } from "../../redux/actions";
+import { googleSignUp, linkedinSignUp, login, setGoogleData, setLinkedinAccessToken, setLoggedUser } from "../../redux/actions";
 
 export const SignIn = () => {
   const { dispatch, useAppSelector } = useRedux();
-  const { activeSignUpTimeline,loggedUser } = useAppSelector((state) => ({
+  const { activeSignUpTimeline,loggedUser, linkedinAccessToken } = useAppSelector((state) => ({
     activeSignUpTimeline: state.Pages.activeSignUpTimeline,
     loggedUser:state.Register.loggedUser,
+    linkedinAccessToken:state.Register.linkedinAccessToken
   }));
 
 
@@ -54,12 +55,19 @@ export const SignIn = () => {
   const { linkedInLogin } = useLinkedIn({
     clientId: process.env.REACT_APP_LINKEDIN_ID as string,
     // clientSecret: process.env.REACT_APP_API_URL as string,
-    redirectUri: `${process.env.REACT_APP_API_URL}auth/linkedin/callback`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
+    redirectUri: `${process.env.REACT_APP_LOCAL_URL}auth/linkedin/callback`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
     onSuccess: (code) => {
-
-      console.log('code linkedin',code);
+      dispatch(setLinkedinAccessToken({  
+        grant_type:"authorization_code",
+        code:code,
+        redirect_uri: `${process.env.REACT_APP_LOCAL_URL}auth/linkedin/callback`,
+        client_id:process.env.REACT_APP_LINKEDIN_ID,
+        client_secret: process.env.REACT_APP_LINKEDIN_SECRET,
+        scope: 'r_liteprofile+r_emailaddress',
+    }))
+      // console.log('code linkedin',code);
       // window.location.href =
-      // process.env.REACT_APP_LOGIN_URL + "login-success";
+      // process.env.REACT_APP_LOGIN_URL + "login-sZuccess";
       // dispatch(login(code))
       // dispatch(setActiveSignUpTimeline("more_info"));
     },
@@ -67,6 +75,16 @@ export const SignIn = () => {
       console.log(error);
     },
   });
+  
+
+  // useEffect(() => {
+  //   if(linkedinAccessToken){
+  //     dispatch(linkedinSignUp({
+  //       access_token:linkedinAccessToken.access_token
+  //     }))
+  //   }
+  // },[linkedinAccessToken]) 
+
 
   useEffect(() => {
     const initClient = () => {
@@ -80,8 +98,14 @@ export const SignIn = () => {
 
   const onSuccess = (res: any) => {
     console.log("success:", res);
-    
+    dispatch(googleSignUp({
+      google_id: res.googleId,
+      access_token:res.tokenId,
+      email:res.profileObj.email
+    }))
+    dispatch(setGoogleData(res))
   };
+
   const onFailure = (err: any) => {
     console.log("failed:", err);
   };
@@ -111,7 +135,7 @@ export const SignIn = () => {
                   onSuccess={onSuccess}
                   onFailure={onFailure}
                   cookiePolicy={"single_host_origin"}
-                  isSignedIn={true}
+                  isSignedIn={false}
                   render={(renderProps) => (
                     <button
                       type="button"

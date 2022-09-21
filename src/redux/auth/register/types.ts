@@ -8,19 +8,23 @@ export enum AuthRegisterActionTypes {
   GOOGLE_AUTH = "@@auth/login/LINKEDIN_AUTH",
   LINKEDIN_AUTH = "@@auth/login/LINKEDIN_AUTH",
   SIGN_UP = "@@auth/register/SIGN_UP",
-  SIGN_UP_DATA = "@@auth/register/SIGN_UP_DATA"
+  SIGN_UP_DATA = "@@auth/register/SIGN_UP_DATA",
+  GOOGLE_DATA = "@@auth/register/GOOGLE_DATA",
+  LINKEDIN_ACCESS_TOKEN = "@@auth/register/LINKEDIN_ACCESS_TOKEN",
+  LINKEDIN_USER_DATA = "@@auth/register/LINKEDIN_USER_DATA"
 }
 
 export type IUserCallback = {
- wt:{
-  Ad:string;
-  rV: string;
-  uT:string;
-  hK:string;
-  cu:string;
-  googleId:string;
+ profileObj:{
+  email:string;
+  familyName: string;
+  givenName:string;
+  imageUrl:string;
+  name:string;
  };
  tokenId:string;
+ accessToken:string;
+ googleId:string;
 }
 
 export type IUser = {
@@ -39,6 +43,11 @@ export type ISignUp = {
   verified:number;
   lead_type:string;
 }
+
+export type ILinkedInAccessToken = {
+  access_token:string;
+  expires_in:number;
+}
 export interface AuthRegisterState {
   registrationError: any;
   message: string;
@@ -48,4 +57,8 @@ export interface AuthRegisterState {
   isUserRegistered: boolean;
   linkedinCode: any;
   signUpData:ISignUp | null;
+  googleData: IUserCallback | null;
+  registerUser:boolean;
+  linkedinAccessToken:ILinkedInAccessToken | null;
+  linkedinUserData:any;
 }

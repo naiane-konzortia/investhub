@@ -9,9 +9,10 @@ import { setActiveSignUpTimeline, signUp } from "../../redux/actions";
 
 export const MoreInfo = () => {
   const { dispatch, useAppSelector } = useRedux();
-  const { investorType, signUpData } = useAppSelector((state) => ({
+  const { investorType, signUpData, googleData } = useAppSelector((state) => ({
     investorType: state.Pages.investorType,
     signUpData: state.Register.signUpData,
+    googleData: state.Register.googleData,
   }));
 
   const customStyles = {
@@ -232,14 +233,31 @@ export const MoreInfo = () => {
 
   const onSubmitForm = (values: any) => {
     console.log(values);
-    dispatch(
-      signUp({
-        ...signUpData,
-        category: values.description.label,
-        min_fund: values.amount.minValue,
-        max_fund: values.amount.maxValue,
-      })
-    );
+    if (signUpData) {
+      dispatch(
+        signUp({
+          ...signUpData,
+          category: values.description.label,
+          min_fund: values.amount.minValue,
+          max_fund: values.amount.maxValue,
+        })
+      );
+    } 
+    // else if (googleData) {
+    //   dispatch(
+    //     signUp({
+    //       full_name: googleData.profileObj.name,
+    //       email: googleData.profileObj.email,
+    //       password: googleData.accessToken,
+    //       phone: googleData.googleId,
+    //       category: values.description.label,
+    //       min_fund: values.amount.minValue,
+    //       max_fund: values.amount.maxValue,
+    //       verified: 0,
+    //       lead_type: investorType === "raise" ? "S" : "I",
+    //     })
+    //   );
+    // }
   };
   console.log("investor type", investorType);
 

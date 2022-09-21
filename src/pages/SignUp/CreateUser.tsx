@@ -11,9 +11,10 @@ import { Finish } from "./Finish";
 
 export const CreateUser = () => {
     const { dispatch, useAppSelector } = useRedux();
-    const { investorType, activeStep } = useAppSelector((state) => ({
+    const { investorType, activeStep, registerUser } = useAppSelector((state) => ({
         investorType:state.Pages.investorType,
         activeStep:state.Pages.activeSignUpTimeline,
+        registerUser:state.Register.registerUser
   }))
 
 
@@ -63,10 +64,11 @@ export const CreateUser = () => {
           {/* <div className='hidden md:flex lg:flex'> */}
           {
             
-            activeStep === "create_user" &&
+            activeStep === "create_user" && registerUser === false &&
             <div className="md:items-center  center-div mx-auto px-6 p-10">
             <SignUpForm/>
             </div>
+ 
           }
           {
             activeStep === "more_info" &&
@@ -75,7 +77,7 @@ export const CreateUser = () => {
             </div>
           }
           {
-            activeStep === "finish_page" &&
+            activeStep === "finish_page" && registerUser === true &&
             <div className="md:items-center flex center-div mx-auto px-6 p-10">
             <Finish/>
             </div>

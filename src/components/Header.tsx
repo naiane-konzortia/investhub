@@ -86,9 +86,11 @@ export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
   const [logged, setLogged] = useState(false);
   const { dispatch, useAppSelector } = useRedux();
-  const { activePage, userLogged } = useAppSelector((state) => ({
+  const { activePage, userLogged,googleData,user } = useAppSelector((state) => ({
     activePage:state.Pages.activePage,
-    userLogged:state.Register.user,
+    userLogged:state.Register.loggedUser,
+    googleData:state.Register.googleData,
+    user:state.Register.user
 }))
 // const [nameUser, setNameUser] = useState(userLogged && userLogged.wt.rV[0])
 // useEffect(() => {
@@ -193,7 +195,7 @@ export default function NavBar() {
                   </div>
               </div>
               {
-                userLogged === null ? 
+                (!userLogged && googleData === null) ? 
                 <div className="hidden pointer space-x-2 md:inline-block">
                   <a
                       className="px-4 py-2 text-white bg-orange-primary font-noah-700 rounded-md shadow hover:bg-gray-800"
@@ -209,14 +211,25 @@ export default function NavBar() {
                   </a>
               </div>
               :
-              <div className="flex flex-row ">
+              userLogged  &&
+              (<div className="flex flex-row ">
               <div className="hidden space-x-2 lg:flex md:flex" onClick={() => setLogged(!logged)}>
-              <div className="user-avatar avatar-sm center-div"></div>
+                {
+                    googleData &&
+                    <div className="user-avatar avatar-sm center-div">{googleData && googleData.profileObj.givenName[0]}</div>
+                }
+                {
+                    user && 
+                    <div className="user-avatar avatar-sm center-div">W</div>
+
+                }
               <div className="font-label-italic-orange mt-3">
               <IoIosArrowDown/>
               </div>
           </div>
           </div>
+          )
+          
               }
               
               {/* {userLogged &&

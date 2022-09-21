@@ -1,4 +1,5 @@
-import React from 'react';
+import { gapi } from 'gapi-script';
+import React, { useEffect } from 'react';
 import { Footer } from '../../components/Footer';
 import NavBar, { Header } from '../../components/Header';
 import { useRedux } from '../../hooks';
@@ -15,6 +16,15 @@ export const LandingPage = () => {
     const { activeState } = useAppSelector((state) => ({
       activeState:state.Pages.activeState,
   }))
+  useEffect(() => {
+    const initClient = () => {
+      gapi.client.init({
+        clientId: process.env.REACT_GOOGLE_ID,
+        scope: "",
+      });
+    };
+    gapi.load("client:auth2", initClient);
+  });
     return(<>
     <NavBar/>
     {activeState === "landing_page" &&

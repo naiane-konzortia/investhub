@@ -18,6 +18,7 @@ import {
   linkedinSignUp,
   signUp,
   signUpData,
+  setGoogleData,
 } from "../../redux/actions";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
@@ -89,8 +90,15 @@ export const SignUpForm = () => {
 
   const onSuccess = (res: any) => {
     console.log("success google:", res);
+    dispatch(googleSignUp({
+      google_id: res.googleId,
+      access_token:res.tokenId,
+      email:res.profileObj.email
+    }))
+    dispatch(setGoogleData(res))
+    
     // dispatch(login(res))
-    // dispatch(setActiveSignUpTimeline("more_info"));
+   
   };
   const onFailure = (err: any) => {
     console.log("failed:", err);
@@ -135,14 +143,14 @@ export const SignUpForm = () => {
             : `We will not charge you anything, this is a free service for investors right now.`}
         </h4>
       </div>
-      <div className="w-full">
-        <div className="flex items-center w-full ">
+      {/* <div className="w-full"> */}
+        {/* <div className="flex items-center w-full ">
           <hr className="w-full" />
           <div className="font-size-14 w-full font-label">SIGN UP WITH</div>
           <hr className="w-full" />
-        </div>
-        <div className="flex flex-col lg:flex-row md:flex-row mb-12">
-          <GoogleLogin
+        </div> */}
+        {/* <div className="flex flex-col lg:flex-row md:flex-row mb-12"> */}
+          {/* <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_ID as string}
             buttonText="Sign in with Google"
             onSuccess={onSuccess}
@@ -161,7 +169,7 @@ export const SignUpForm = () => {
                 </p>
               </button>
             )}
-          />
+          /> */}
           {/* <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
@@ -171,7 +179,7 @@ export const SignUpForm = () => {
               Google
             </p>
           </button> */}
-
+{/* 
           <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
@@ -181,7 +189,7 @@ export const SignUpForm = () => {
             <p className="font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
               LinkedIn
             </p>
-          </button>
+          </button> */}
           {/* <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700 py-2  px-10 bg-gray flex items-center w-full mt-10"
@@ -191,11 +199,11 @@ export const SignUpForm = () => {
               AppleID
             </p>
           </button> */}
-        </div>
-      </div>
+        {/* </div> */}
+      {/* </div> */}
       <div className="flex items-center w-full ">
         <hr className="w-full" />
-        <div className="font-size-14 mr-5 ml-5 font-label">OR</div>
+        {/* <div className="font-size-14 mr-5 ml-5 font-label">SIGN UP</div> */}
         <hr className="w-full" />
       </div>
       <form
