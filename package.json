@@ -16,6 +16,7 @@
     "eslint-visitor-keys": "^3.3.0",
     "react-linkedin-login-oauth2": "github:nvh95/react-linkedin-login-oauth2#pull/42/head",
     "next-fonts": "^1.5.1",
+    "@lottiefiles/react-lottie-player": "^3.4.7",
     "nookies": "^2.5.2",
     "postcss": "^8.4.16",
     "react": "^17.0.2",
