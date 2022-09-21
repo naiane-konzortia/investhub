@@ -90,12 +90,12 @@ export default function NavBar() {
     activePage:state.Pages.activePage,
     userLogged:state.Register.user,
 }))
-const [nameUser, setNameUser] = useState(userLogged && userLogged.wt.rV[0])
-useEffect(() => {
-    if(userLogged !== null){
-        setNameUser(userLogged.wt.rV[0])
-    }
-},[userLogged])
+// const [nameUser, setNameUser] = useState(userLogged && userLogged.wt.rV[0])
+// useEffect(() => {
+//     if(userLogged !== null){
+//         setNameUser(userLogged.wt.rV[0])
+//     }
+// },[userLogged])
 
   return (
       <nav className="w-full bg-header shadow">
@@ -211,7 +211,7 @@ useEffect(() => {
               :
               <div className="flex flex-row ">
               <div className="hidden space-x-2 lg:flex md:flex" onClick={() => setLogged(!logged)}>
-              <div className="user-avatar avatar-sm center-div">{nameUser}</div>
+              <div className="user-avatar avatar-sm center-div"></div>
               <div className="font-label-italic-orange mt-3">
               <IoIosArrowDown/>
               </div>

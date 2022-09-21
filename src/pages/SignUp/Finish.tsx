@@ -7,7 +7,7 @@ export const Finish = () => {
   const { investorType, signUpData, nameUser, activeState } = useAppSelector(
     (state) => ({
       investorType: state.Pages.investorType,
-      signUpData: state.Pages.signUpData,
+      signUpData: state.Register.signUpData,
       nameUser: state.Pages.nameUser,
       activeState: state.Pages.activeState,
     })
@@ -36,7 +36,7 @@ export const Finish = () => {
           {activeState === "sign_up" && (
             <>
               <h2 className="text-4xl font-bold text-center font-noah-700 text-gray-800 mb-8">
-                {`Thanks for signing up, ${nameUser}!`}
+                {`Thanks for signing up, ${signUpData && signUpData.full_name.split(" ")[0]}!`}
               </h2>
               <h5 className="font-noah-700">
                 You will receive a confirmation email shortly.

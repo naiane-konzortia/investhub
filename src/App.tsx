@@ -8,7 +8,8 @@ import { StartCampaign } from "./components/StartCampaign";
 import { LandingPage } from "./pages/LandingPage";
 import { LinkedInCallback } from 'react-linkedin-login-oauth2';
 import { LoginSuccess } from "./pages/SignUp/LoginSuccess";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => (
   <div className="bg-white h-screen w-screen overflow-x-hidden">
@@ -19,6 +20,7 @@ const App = () => (
         <Route  path="/auth/linkedin/callback" element={<LinkedInCallback/>} />
         <Route  path="/login-success" element={<LoginSuccess/>} />
       </Routes>
+      <ToastContainer />
     </Router>
   </div>
 );

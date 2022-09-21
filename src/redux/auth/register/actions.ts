@@ -46,10 +46,10 @@ export const linkedinAuth = (data:{}) => {
   };
 };
 
-export const signUp = (user:{}) => {
+export const signUp = (data:{}) => {
   return {
     type: AuthRegisterActionTypes.SIGN_UP,
-    payload: { user },
+    payload: { data },
   };
 };
 
@@ -63,6 +63,13 @@ export const googleSignUp = (data:{}) => {
 export const linkedinSignUp = (data:{}) => {
   return {
     type: AuthRegisterActionTypes.LINKEDIN_AUTH,
+    payload: { data },
+  };
+};
+
+export const signUpData = (data:{}) => {
+  return {
+    type: AuthRegisterActionTypes.SIGN_UP_DATA,
     payload: { data },
   };
 };

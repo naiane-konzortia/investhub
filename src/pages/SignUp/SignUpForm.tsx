@@ -8,13 +8,22 @@ import { useForm } from "react-hook-form";
 import { Form, Input } from "reactstrap";
 import FormInput from "../../components/FormInput";
 import { useRedux } from "../../hooks";
-import { login, setActiveSignUpTimeline, setSignUpData, linkedinAuth, setActiveState, googleSignUp, linkedinSignUp, signUp } from "../../redux/actions";
+import {
+  login,
+  setActiveSignUpTimeline,
+  setSignUpData,
+  linkedinAuth,
+  setActiveState,
+  googleSignUp,
+  linkedinSignUp,
+  signUp,
+  signUpData,
+} from "../../redux/actions";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
-import { LinkedIn, useLinkedIn } from 'react-linkedin-login-oauth2';
-
+import { LinkedIn, useLinkedIn } from "react-linkedin-login-oauth2";
 
 export const SignUpForm = () => {
   const { dispatch, useAppSelector } = useRedux();
@@ -23,7 +32,13 @@ export const SignUpForm = () => {
   }));
   const resolver = yupResolver(
     yup.object().shape({
-      name: yup.string().required("Please Enter Full Name."),
+      name: yup
+      .string()
+      .matches(
+        /^(?:([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)) (?:([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*))$/g,
+        'Please enter your full name.'
+    )
+      .required("Please Enter Full Name."),
       email: yup.string().required("Please Enter E-mail."),
       password: yup.string().required("Please Enter Password."),
       confirmpassword: yup
@@ -49,10 +64,13 @@ export const SignUpForm = () => {
   const onSubmitForm = (values: any) => {
     console.log("values", values);
     dispatch(
-      setSignUpData({
-        name: values.name,
+      signUpData({
+        full_name: values.name,
         email: values.email,
         password: values.password,
+        phone: phone,
+        lead_type: investorType === "raise" ? "S" : "I",
+        verification:0
       })
     );
     dispatch(setActiveSignUpTimeline("more_info"));
@@ -73,7 +91,6 @@ export const SignUpForm = () => {
     console.log("success google:", res);
     // dispatch(login(res))
     // dispatch(setActiveSignUpTimeline("more_info"));
-
   };
   const onFailure = (err: any) => {
     console.log("failed:", err);
@@ -83,14 +100,13 @@ export const SignUpForm = () => {
   // dispatch(linkedinSignUp({}))
   // dispatch(signUp({}))
   // dispatch(login({}))
-  
+
   const { linkedInLogin } = useLinkedIn({
     clientId: process.env.REACT_APP_LINKEDIN_ID as string,
     // clientSecret: process.env.REACT_APP_API_URL as string,
     redirectUri: `${process.env.REACT_APP_API_URL}auth/linkedin/callback`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
     onSuccess: (code) => {
-
-      console.log('code linkedin',code);
+      console.log("code linkedin", code);
 
       // dispatch(linkedinAuth({
       //   grant_type:'authorization_code',
@@ -110,8 +126,6 @@ export const SignUpForm = () => {
     },
   });
 
-
-
   return (
     <>
       <div className="container mx-auto mb-6">
@@ -128,15 +142,15 @@ export const SignUpForm = () => {
           <hr className="w-full" />
         </div>
         <div className="flex flex-col lg:flex-row md:flex-row mb-12">
-        <GoogleLogin
-          clientId={process.env.REACT_APP_GOOGLE_ID as string}
-          buttonText="Sign in with Google"
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-          cookiePolicy={'single_host_origin'}
-          isSignedIn={true}
-              render={renderProps => (
-                <button
+          <GoogleLogin
+            clientId={process.env.REACT_APP_GOOGLE_ID as string}
+            buttonText="Sign in with Google"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy={"single_host_origin"}
+            isSignedIn={true}
+            render={(renderProps) => (
+              <button
                 type="button"
                 className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
                 onClick={renderProps.onClick}
@@ -146,8 +160,8 @@ export const SignUpForm = () => {
                   Google
                 </p>
               </button>
-    )}
-      />
+            )}
+          />
           {/* <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
@@ -157,12 +171,12 @@ export const SignUpForm = () => {
               Google
             </p>
           </button> */}
-          
+
           <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
             onClick={linkedInLogin}
-         >
+          >
             <BsLinkedin />
             <p className="font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
               LinkedIn
@@ -215,6 +229,7 @@ export const SignUpForm = () => {
         <div className="mb-3">
           <PhoneInput
             type="tel"
+            required
             placeholder="Phone number"
             // maxLength="18"
             value={phone !== null ? phone : ""}
@@ -256,7 +271,7 @@ export const SignUpForm = () => {
             type="submit"
             className="bg-orange font-label-white font-size-14 p-2 px-8"
           >
-            SIGN UP
+            NEXT
           </button>
         </div>
       </form>

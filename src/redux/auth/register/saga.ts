@@ -5,8 +5,12 @@ import { AuthRegisterActionTypes } from "./types";
 import {
   authRegisterApiResponseSuccess,
   authRegisterApiResponseError,
+  signUpData,
 } from "./actions";
-
+import {
+  showErrorNotification,
+  showSuccessNotification,
+} from "../../../helpers/notifications";
 import {
   registerUser as registerUserApi,
   login as loginApi,
@@ -14,6 +18,8 @@ import {
   signUpGoogle as signUpGoogleApi,
   signUpLinkedin as signUpLinkedinApi
  } from "../../../services";
+import { setActiveSignUpTimeline } from "../../actions";
+import { toast } from "react-toastify";
 
  const myDomain = process.env.REACT_APP_PUBLIC_DOMAIN;
 
@@ -21,20 +27,25 @@ import {
 //Include Both Helper File with needed methods
 
 // Is user register successfull then direct plot user in redux.
-function* signUp({ payload: user }: any) {
+function* signUp({ payload: data }: any) {
   try {
-    const response: Promise<any> = yield call(signUpApi, user);
+    const response: Promise<any> = yield call(signUpApi, data);
     yield put(
       authRegisterApiResponseSuccess(
         AuthRegisterActionTypes.SIGN_UP,
         response
       )
     );
+    yield call(showSuccessNotification, "Account created with success!");
+    yield put(setActiveSignUpTimeline("finish_page"))
+    yield put(signUpData(data.data))
   } catch (error: any) {
     yield put(
       authRegisterApiResponseError(AuthRegisterActionTypes.SIGN_UP, error)
     );
+    yield call(showErrorNotification, error);
   }
+
 }
 
 function* signUpGoogle({ payload: data }: any) {
@@ -78,10 +89,12 @@ function* login({ payload: data }: any) {
         response
       )
     );
+    yield call(showSuccessNotification, "Logged in with success!");
   } catch (error: any) {
     yield put(
       authRegisterApiResponseError(AuthRegisterActionTypes.LOGIN, error)
     );
+    yield call(showSuccessNotification, error);
   }
 }
 

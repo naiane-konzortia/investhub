@@ -6,8 +6,9 @@ export const INIT_STATE: AuthRegisterState = {
   loading: false,
   user: null,
   isUserRegistered: false,
-  loggedUser:null,
-  linkedinCode:null
+  loggedUser:false,
+  linkedinCode:null,
+  signUpData:null
 };
 
 const Register = (state = INIT_STATE, action: any) => {
@@ -27,13 +28,13 @@ const Register = (state = INIT_STATE, action: any) => {
               ...state,
               loading: false,
               user: action.payload.data,
+              loggedUser:true,
               registrationError: null,
               isUserRegistered: true,
             };
           case AuthRegisterActionTypes.LOGGED_USER:
             return {
               ...state,
-              loggedUser: action.payload.data,
             };
           case AuthRegisterActionTypes.LINKEDIN_AUTH:
             return {
@@ -43,23 +44,18 @@ const Register = (state = INIT_STATE, action: any) => {
           case AuthRegisterActionTypes.SIGN_UP:
             return {
               ...state,
-              user: action.payload.data,
             };
           case AuthRegisterActionTypes.GOOGLE_AUTH:
             return {
               ...state,
-              user: action.payload.data,
+               user: null,
             };
           case AuthRegisterActionTypes.LINKEDIN_AUTH:
             return {
               ...state,
-              user: action.payload.data,
+              user: null,
             };
-          case AuthRegisterActionTypes.LOGIN:
-            return {
-              ...state,
-              loggedUser: action.payload.data,
-            };
+
         default:
           return { ...state };
       }
@@ -116,18 +112,12 @@ const Register = (state = INIT_STATE, action: any) => {
         isUserRegistered: false,
       };
     }
-    case AuthRegisterActionTypes.LOGIN: {
+
+
+    case AuthRegisterActionTypes.SIGN_UP_DATA:
       return {
         ...state,
-        loading: true,
-        isUserRegistered: false,
-        user: action.payload.data,
-      };
-    }
-    case AuthRegisterActionTypes.LOGGED_USER:
-      return {
-        ...state,
-        loggedUser: action.payload.data,
+        signUpData: action.payload.data,
       };
     default:
       return { ...state };

@@ -25,7 +25,6 @@ export enum PagesActionTypes {
     activeState: "landing_page" | "sign_up" | "sign_in";
     activeSignUpTimeline: "create_user" | "more_info" | "raise_info" | "finish_page";
     investorType: "invest" | "raise" | null;
-    signUpData: IData | null;
     nameUser:string | null;
   }
   

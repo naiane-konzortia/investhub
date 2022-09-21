@@ -12,7 +12,7 @@ import GoogleLogin from "react-google-login";
 import { LinkedIn, useLinkedIn } from "react-linkedin-login-oauth2";
 
 import { Finish } from "./Finish";
-import { setLoggedUser } from "../../redux/actions";
+import { login, setLoggedUser } from "../../redux/actions";
 
 export const SignIn = () => {
   const { dispatch, useAppSelector } = useRedux();
@@ -45,6 +45,7 @@ export const SignIn = () => {
 
   const onSubmitForm = (values: any) => {
     console.log("values", values);
+    dispatch(login({email: values.email, password:values.password}))
     // dispatch(setLoggedUser(values))
     //   dispatch(setSignUpData({name: values.name, email: values.email, password:values.password}))
     //   dispatch(setActiveSignUpTimeline('more_info'))
@@ -79,31 +80,29 @@ export const SignIn = () => {
 
   const onSuccess = (res: any) => {
     console.log("success:", res);
+    
   };
   const onFailure = (err: any) => {
     console.log("failed:", err);
   };
 
-  const [nameUser, setNameUser] = useState(loggedUser && loggedUser.email)
-useEffect(() => {
-    setNameUser(loggedUser && loggedUser.email)
-},[loggedUser])
+
 
   return (
     <>
-      {loggedUser === null && (
+      {!loggedUser && (
         <div className="flex flex-row">
           <div className="bg-welcome each-wrap  w-6/12 hidden md:flex lg:flex">
             <Welcome />
           </div>
-          <div className="md:items-center each-wrap  w-6/12 center-div mx-auto px-6 p-10">
-            <div className="w-full">
-              <div className="flex items-center w-full ">
-                <hr className="w-full" />
-                <div className="font-size-14 w-full font-label">
+          <div className="md:items-center  center-div mx-auto px-6 p-10">
+            <div className="sm:w-full">
+              <div className="flex items-center sm:w-full ">
+                <hr className="sm:w-full" />
+                <div className="font-size-14 sm:w-full font-label">
                   SIGN IN WITH
                 </div>
-                <hr className="w-full" />
+                <hr className="sm:w-full" />
               </div>
               <div className="flex flex-col lg:flex-row md:flex-row mb-12">
                 <GoogleLogin

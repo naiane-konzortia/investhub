@@ -17,7 +17,7 @@ export const LoginSuccess = () => {
   const { investorType, signUpData, nameUser, activeState } = useAppSelector(
     (state) => ({
       investorType: state.Pages.investorType,
-      signUpData: state.Pages.signUpData,
+      signUpData: state.Register.signUpData,
       nameUser: state.Pages.nameUser,
       activeState: state.Pages.activeState,
     })

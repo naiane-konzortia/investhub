@@ -7,11 +7,11 @@ const registerUser = (params: any) => {
 };
 
 const login = (params: any) => {
-  return api.create(`${url.API}${url.LOGIN}`, params)
+  return api.create(`${url.API}${url.LOGIN}`, params.data)
 }
 
 const signUp = (params:any) => {
-  return api.create(`${url.API}${url.SIGNUP}`, params)
+  return api.create(`${url.API}${url.SIGNUP}`, params.data)
 }
 
 const signUpGoogle = (params:any) => {
