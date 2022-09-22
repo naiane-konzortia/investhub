@@ -13,7 +13,8 @@ export const INIT_STATE: AuthRegisterState = {
   registerUser:false,
   linkedinAccessToken:null,
   linkedinUserData:null,
-  linkedinEmail:null
+  linkedinEmail:null,
+  linkedinName:null,
 };
 
 const Register = (state = INIT_STATE, action: any) => {
@@ -61,6 +62,7 @@ const Register = (state = INIT_STATE, action: any) => {
               ...state,
               linkedinAccessToken:action.payload.data.data,
               linkedinEmail:action.payload.data.data.email.elements[0],
+              linkedinName:action.payload.data.data.me.firstName.localized.en_US,
               loggedUser:true
             };
           case AuthRegisterActionTypes.LINKEDIN_USER_DATA:

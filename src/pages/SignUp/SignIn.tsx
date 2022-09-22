@@ -12,17 +12,26 @@ import GoogleLogin from "react-google-login";
 import { LinkedIn, useLinkedIn } from "react-linkedin-login-oauth2";
 
 import { Finish } from "./Finish";
-import { googleSignUp, linkedinSignUp, login, setGoogleData, setLinkedinAccessToken, setLoggedUser } from "../../redux/actions";
+import {
+  googleSignUp,
+  linkedinSignUp,
+  login,
+  setGoogleData,
+  setLinkedinAccessToken,
+  setLoggedUser,
+} from "../../redux/actions";
 
 export const SignIn = () => {
   const { dispatch, useAppSelector } = useRedux();
-  const { activeSignUpTimeline,loggedUser, linkedinAccessToken } = useAppSelector((state) => ({
+  const {
+    activeSignUpTimeline,
+    loggedUser,
+    linkedinAccessToken,
+  } = useAppSelector((state) => ({
     activeSignUpTimeline: state.Pages.activeSignUpTimeline,
-    loggedUser:state.Register.loggedUser,
-    linkedinAccessToken:state.Register.linkedinAccessToken
+    loggedUser: state.Register.loggedUser,
+    linkedinAccessToken: state.Register.linkedinAccessToken,
   }));
-
-
 
   const resolver = yupResolver(
     yup.object().shape({
@@ -46,36 +55,38 @@ export const SignIn = () => {
 
   const onSubmitForm = (values: any) => {
     console.log("values", values);
-    dispatch(login({email: values.email, password:values.password}))
+    dispatch(login({ email: values.email, password: values.password }));
     // dispatch(setLoggedUser(values))
     //   dispatch(setSignUpData({name: values.name, email: values.email, password:values.password}))
     //   dispatch(setActiveSignUpTimeline('more_info'))
   };
 
-  const { linkedInLogin } = useLinkedIn({
-    clientId: process.env.REACT_APP_LINKEDIN_ID as string,
-    // clientSecret: process.env.REACT_APP_API_URL as string,
-    redirectUri: `${process.env.REACT_APP_LOCAL_URL}auth/linkedin/callback`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
-    onSuccess: (code) => {
-      dispatch(setLinkedinAccessToken({  
-        grant_type:"authorization_code",
-        code:code,
-        redirect_uri: `${process.env.REACT_APP_LOCAL_URL}auth/linkedin/callback`,
-        client_id:process.env.REACT_APP_LINKEDIN_ID,
-        client_secret: process.env.REACT_APP_LINKEDIN_SECRET,
-        scope: 'r_liteprofile%20r_emailaddress',
-    }))
-      // console.log('code linkedin',code);
-      // window.location.href =
-      // process.env.REACT_APP_LOGIN_URL + "login-sZuccess";
-      // dispatch(login(code))
-      // dispatch(setActiveSignUpTimeline("more_info"));
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
-  
+  // const { linkedInLogin } = useLinkedIn({
+  //   clientId: process.env.REACT_APP_LINKEDIN_ID as string,
+  //   scope: "r_liteprofile%20r_emailaddress%20w_member_social",
+  //   // clientSecret: process.env.REACT_APP_API_URL as string,
+  //   redirectUri: `${process.env.REACT_APP_LOCAL_URL}auth/linkedin/callback`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
+  //   onSuccess: (code) => {
+  //     dispatch(
+  //       setLinkedinAccessToken({
+  //         grant_type: "authorization_code",
+  //         code: code,
+  //         redirect_uri: `${process.env.REACT_APP_LOCAL_URL}auth/linkedin/callback`,
+  //         client_id: process.env.REACT_APP_LINKEDIN_ID,
+  //         client_secret: process.env.REACT_APP_LINKEDIN_SECRET,
+  //         scope: "r_liteprofile%20r_emailaddress%20w_member_social",
+  //       })
+  //     );
+  //     // console.log('code linkedin',code);
+  //     // window.location.href =
+  //     // process.env.REACT_APP_LOGIN_URL + "login-sZuccess";
+  //     // dispatch(login(code))
+  //     // dispatch(setActiveSignUpTimeline("more_info"));
+  //   },
+  //   onError: (error) => {
+  //     console.log(error);
+  //   },
+  // });
 
   // useEffect(() => {
   //   if(linkedinAccessToken){
@@ -83,8 +94,7 @@ export const SignIn = () => {
   //       access_token:linkedinAccessToken.access_token
   //     }))
   //   }
-  // },[linkedinAccessToken]) 
-
+  // },[linkedinAccessToken])
 
   useEffect(() => {
     const initClient = () => {
@@ -98,19 +108,19 @@ export const SignIn = () => {
 
   const onSuccess = (res: any) => {
     console.log("success:", res);
-    dispatch(googleSignUp({
-      google_id: res.googleId,
-      access_token:res.tokenId,
-      email:res.profileObj.email
-    }))
-    dispatch(setGoogleData(res))
+    dispatch(
+      googleSignUp({
+        google_id: res.googleId,
+        access_token: res.tokenId,
+        email: res.profileObj.email,
+      })
+    );
+    dispatch(setGoogleData(res));
   };
 
   const onFailure = (err: any) => {
     console.log("failed:", err);
   };
-
-
 
   return (
     <>
@@ -149,16 +159,41 @@ export const SignIn = () => {
                     </button>
                   )}
                 />
-                <button
-                  type="button"
-                  className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
-                  onClick={linkedInLogin}
+                <LinkedIn
+                  clientId={process.env.REACT_APP_LINKEDIN_ID as string}
+                  scope="r_liteprofile+r_emailaddress"
+                  redirectUri={`${process.env.REACT_APP_LOCAL_URL}auth/linkedin/callback`} // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
+                  onSuccess={(code) => {
+                    dispatch(
+                      setLinkedinAccessToken({
+                        grant_type: "authorization_code",
+                        code: code,
+                        redirect_uri: `${process.env.REACT_APP_LOCAL_URL}auth/linkedin/callback`,
+                        client_id: process.env.REACT_APP_LINKEDIN_ID,
+                        client_secret: process.env.REACT_APP_LINKEDIN_SECRET,
+                        scope:
+                          "r_liteprofile+r_emailaddress",
+                      })
+                    );
+                  }}
+                  onError={(error) => {
+                    console.log(error);
+                  }}
                 >
-                  <BsLinkedin />
-                  <p className="font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
-                    LinkedIn
-                  </p>
-                </button>
+                  {({ linkedInLogin }) => (
+                    <button
+                      type="button"
+                      className="focus:outline-none inline-block font-label-gray-700  mr-2 py-2 px-10 bg-gray flex items-center w-full mt-10"
+                      onClick={linkedInLogin}
+                    >
+                      <BsLinkedin />
+                      <p className="font-size-12 mt-1 font-label ml-2 break-normal text-gray-700">
+                        LinkedIn
+                      </p>
+                    </button>
+                  )}
+                </LinkedIn>
+
                 {/* <button
             type="button"
             className="focus:outline-none inline-block font-label-gray-700 py-2  px-10 bg-gray flex items-center w-full mt-10"
@@ -246,7 +281,7 @@ export const SignIn = () => {
           </div>
         </div>
       )}
-      {loggedUser  && (
+      {loggedUser && (
         <div className="flex flex-row ">
           <Welcome />
           <div className="md:items-center flex center-div mx-auto px-6 p-10">

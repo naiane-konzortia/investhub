@@ -71,4 +71,5 @@ export interface AuthRegisterState {
   linkedinAccessToken:ILinkedInAccessToken | null;
   linkedinUserData:any;
   linkedinEmail:any;
+  linkedinName:any;
 }
