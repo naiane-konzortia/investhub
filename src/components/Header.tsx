@@ -196,7 +196,7 @@ export default function NavBar() {
                   </div>
               </div>
               {
-                (!userLogged && googleData === null) ? 
+                (!userLogged) ? 
                 <div className="hidden pointer space-x-2 md:inline-block">
                   <a
                       className="px-4 py-2 text-white bg-orange-primary font-noah-700 rounded-md shadow hover:bg-gray-800"
