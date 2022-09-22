@@ -140,6 +140,7 @@ const Register = (state = INIT_STATE, action: any) => {
     case AuthRegisterActionTypes.GOOGLE_DATA:
       return {
         ...state,
+        loggedUser:true,
         googleData: action.payload.data,
       };
     default:

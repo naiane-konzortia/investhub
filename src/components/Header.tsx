@@ -218,11 +218,11 @@ export default function NavBar() {
               <div className="hidden space-x-2 lg:flex md:flex" onClick={() => setLogged(!logged)}>
                 {
                     googleData &&
-                    <div className="user-avatar avatar-sm center-div">{googleData && googleData.profileObj.givenName[0]}</div>
+                    <div className="user-avatar avatar-sm center-div">{(googleData.profileObj.givenName[0]).toUpperCase()}</div>
                 }
                 {
                     user && 
-                    <div className="user-avatar avatar-sm center-div">{user.full_name[0][0]}</div>
+                    <div className="user-avatar avatar-sm center-div">{(user.full_name[0][0]).toUpperCase()}</div>
 
                 }
                 {

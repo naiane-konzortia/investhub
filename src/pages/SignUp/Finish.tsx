@@ -4,14 +4,19 @@ import { setActiveState } from "../../redux/actions";
 
 export const Finish = () => {
   const { dispatch, useAppSelector } = useRedux();
-  const { investorType, signUpData, nameUser, activeState } = useAppSelector(
+  const { investorType, signUpData, nameUser, activeState,googleData,user, linkedinEmail, linkedinName } = useAppSelector(
     (state) => ({
       investorType: state.Pages.investorType,
       signUpData: state.Register.signUpData,
       nameUser: state.Pages.nameUser,
       activeState: state.Pages.activeState,
+      linkedinEmail:state.Register.linkedinEmail,
+      linkedinName: state.Register.linkedinName,
+      googleData:state.Register.googleData,
+      user:state.Register.user,
     })
   );
+
 
   return (
     <>
@@ -19,10 +24,27 @@ export const Finish = () => {
         <div className="container mx-auto px-6 py-20">
           {activeState === "sign_in" &&  (
             <>
-            <h2 className="text-4xl font-bold text-center font-noah-700 text-gray-800 mb-8">
-              Welcome!
-              {/* {`Welcome, ${nameUser}!`} */}
+            {
+              googleData &&
+              <h2 className="text-4xl font-bold text-center font-noah-700 text-gray-800 mb-8">
+              {/* Welcome! */}
+              {`Welcome, ${ googleData.profileObj.givenName}!`}
             </h2>
+            }
+            {
+              user &&
+              <h2 className="text-4xl font-bold text-center font-noah-700 text-gray-800 mb-8">
+              {/* Welcome! */}
+              {`Welcome, ${ user.full_name[0]}!`}
+            </h2>
+            }
+           {
+            linkedinName &&
+            <h2 className="text-4xl font-bold text-center font-noah-700 text-gray-800 mb-8">
+              {/* Welcome! */}
+              {`Welcome, ${linkedinName}!`}
+            </h2>
+           }
             <button
             type="submit"
             className="mt-6 bg-orange font-label-white font-size-14 p-2 px-20"
